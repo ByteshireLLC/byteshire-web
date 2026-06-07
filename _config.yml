@@ -1,0 +1,17 @@
+title: Byteshire
+description: Byteshire LLC makes Discboard — an album-listening app for iPhone, iPad, and Mac.
+url: https://byteshire.com
+
+# Replace with the Discboard App Store URL once the app is live. Until then the
+# "Download on the App Store" button points here.
+discboard_app_store_url: "#"
+
+markdown: kramdown
+permalink: pretty
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - .bundle

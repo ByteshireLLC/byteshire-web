@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<article class="legal wrap">
+  <h1>{{ page.title }}</h1>
+  {% if page.effective or page.updated %}
+  <p class="legal-meta">
+    {% if page.effective %}<strong>Effective date:</strong> {{ page.effective | date: "%B %-d, %Y" }}{% endif %}
+    {% if page.updated %}<br><strong>Last updated:</strong> {{ page.updated | date: "%B %-d, %Y" }}{% endif %}
+  </p>
+  {% endif %}
+  {{ content }}
+  <p class="legal-back"><a href="{{ '/discboard/' | relative_url }}">← Back to Discboard</a></p>
+</article>
