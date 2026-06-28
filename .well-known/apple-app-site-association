@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["Q49NLLTHSF.com.byteshire.Discboard"],
+        "components": [
+          {
+            "/": "/share",
+            "comment": "Share-extension launch trigger — foregrounds Discboard after a board pick."
+          }
+        ]
+      }
+    ]
+  }
+}

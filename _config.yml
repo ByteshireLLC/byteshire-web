@@ -9,6 +9,12 @@ discboard_app_store_url: "#"
 markdown: kramdown
 permalink: pretty
 
+# Jekyll omits dot-directories by default, so force the Apple App Site
+# Association (Universal Links for Discboard's share extension) into _site.
+# The file has no front matter, so Jekyll copies it verbatim.
+include:
+  - .well-known
+
 exclude:
   - Gemfile
   - Gemfile.lock
