@@ -4,7 +4,7 @@ title: Flindex Terms of Use
 description: The terms that govern your use of the Flindex app.
 permalink: /flindex-terms/
 effective: 2026-07-18
-updated: 2026-07-18
+updated: 2026-07-28
 ---
 
 These Terms of Use govern your use of the Flindex app, made by Byteshire LLC ("we," "us"). By downloading or using Flindex, you agree to these terms.
@@ -15,9 +15,11 @@ Flindex is licensed, not sold, to you for use only under these terms and under A
 
 ## Your files
 
-Flindex works with the files in folders you choose to grant it. It reads those files to build a search index and, when you open or edit one, hands it to the system or saves your changes in place. You are responsible for the files you index with Flindex and for having the rights to use them. Your files stay where they already live, and your search index stays on your device and in your own iCloud account, as described in our [Privacy Policy](https://byteshire.com/flindex-privacy).
+Flindex works with the files in folders you choose to grant it. It reads those files to build a search index and, when you open or edit one, hands it to the system or saves your changes in place. You are responsible for the files you index with Flindex and for having the rights to use them. Your files stay where they already live, and your search index stays on your device and in your own iCloud account, as described in our [Privacy Policy](https://byteshire.com/flindex-privacy/).
 
-Flindex does not store, back up, or take ownership of your files. Deleting the app removes its search index, never your files.
+Flindex also acts on your files at your direction — renaming, moving, copying, creating, editing, and deleting them. These operations do what you ask to real files in real folders, and some of them, deletion above all, cannot always be undone. You are responsible for the changes you make through Flindex; please make sure you mean them.
+
+Flindex does not store on our systems, back up, or take ownership of your files. Deleting the app removes its search index, never your files.
 
 ## Acceptable use
 
