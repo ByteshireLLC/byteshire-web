@@ -4,6 +4,8 @@ title: Discboard Terms of Use
 description: The terms that govern your use of the Discboard app, including the Discboard Premium subscription.
 permalink: /discboard-terms/
 effective: 2026-06-07
+back_url: /discboard/
+back_label: Discboard
 updated: 2026-06-07
 ---
 

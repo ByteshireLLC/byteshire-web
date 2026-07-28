@@ -4,6 +4,8 @@ title: Discboard Privacy Policy
 description: How Discboard handles your information — the short version is that it doesn't collect any.
 permalink: /discboard-privacy/
 effective: 2026-06-07
+back_url: /discboard/
+back_label: Discboard
 updated: 2026-06-07
 ---
 

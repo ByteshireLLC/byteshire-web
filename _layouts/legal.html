@@ -10,5 +10,12 @@ layout: default
   </p>
   {% endif %}
   {{ content }}
-  <p class="legal-back"><a href="{{ '/discboard/' | relative_url }}">← Back to Discboard</a></p>
+  {% comment %}
+    Opt-in back-link. This used to hardcode /discboard/, so every app's legal
+    pages linked back to Discboard — wrong for Flindex, which has no landing
+    page at all. Set back_url + back_label only when the app really has one.
+  {% endcomment %}
+  {% if page.back_url %}
+  <p class="legal-back"><a href="{{ page.back_url | relative_url }}">← Back to {{ page.back_label }}</a></p>
+  {% endif %}
 </article>
