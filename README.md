@@ -10,6 +10,7 @@ The static website for [byteshire.com](https://byteshire.com) and the Discboard 
 | `/discboard/` | `discboard.html` — Discboard landing page |
 | `/discboard-privacy/` | `discboard-privacy.md` — Discboard privacy policy |
 | `/discboard-terms/` | `discboard-terms.md` — Discboard terms of use |
+| `/discboard/tiktok/`, `/discboard/instagram/`, `/discboard/youtube/`, `/discboard/bluesky/`, `/discboard/reddit/` | `discboard/<channel>.md` — short links that forward to the App Store with a campaign token (see below) |
 
 ## The legal URLs are load-bearing — do not break them
 
@@ -19,7 +20,13 @@ This site is the canonical published home for the legal copy. It originated from
 
 ## Configuration
 
-`_config.yml` holds `discboard_app_store_url`. It is currently `"#"`; set it to the real App Store URL once Discboard is live, and the "Download on the App Store" button picks it up.
+`_config.yml` holds Discboard's App Store id (`discboard_app_id`) and its App Analytics provider token (`discboard_campaign_pt`). Every store link on the site is built from those two values plus a campaign token, so App Store Connect → Analytics → Acquisition → Campaigns can attribute installs to the link that produced them. The landing page's download button carries `ct=byteshire-web`.
+
+## Campaign short links
+
+`discboard/<channel>.md` pages use the `redirect` layout and supply only a `campaign:` token; the layout assembles the full `apps.apple.com` URL and forwards immediately. They exist because a short-form video caption cannot be tapped, so the link has to be short enough to say out loud and type — `byteshire.com/discboard/youtube` — and because a redirect can be re-pointed later without editing a post that is already live.
+
+Token convention: TikTok and Instagram only ever get a bio link, so their tokens are evergreen (`bio-tiktok`, `bio-instagram`). YouTube, Bluesky and Reddit links go in individual posts, so their tokens name the release they were posted for (`1.3-carplay-youtube`); bump them when the next release's posts go out. A campaign row only appears in App Store Connect once five distinct Apple Accounts have installed through it.
 
 ## Local preview
 

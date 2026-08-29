@@ -2,9 +2,12 @@ title: Byteshire
 description: Byteshire LLC makes Discboard — an album-listening app for iPhone, iPad, and Mac.
 url: https://byteshire.com
 
-# Replace with the Discboard App Store URL once the app is live. Until then the
-# "Download on the App Store" button points here.
-discboard_app_store_url: "#"
+# Discboard's App Store identity. Every store link on this site is built from
+# these two values (see _layouts/redirect.html and discboard.html) so a campaign
+# token is the only thing a page has to supply. `pt` is the App Analytics
+# provider token from App Store Connect → Analytics → Acquisition → Campaigns.
+discboard_app_id: "6768056000"
+discboard_campaign_pt: "128711249"
 
 markdown: kramdown
 permalink: pretty

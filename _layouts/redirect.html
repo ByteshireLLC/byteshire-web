@@ -1,0 +1,21 @@
+---
+# A short link that forwards to Discboard's App Store page with a campaign token
+# attached. Pages using this layout supply only `campaign:`; the app id and
+# provider token come from _config.yml, so one edit changes every link.
+---
+{%- capture target -%}https://apps.apple.com/app/id{{ site.discboard_app_id }}?pt={{ site.discboard_campaign_pt }}&ct={{ page.campaign | uri_escape }}&mt=8{%- endcapture -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Discboard on the App Store</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="{{ target }}">
+  <meta http-equiv="refresh" content="0; url={{ target }}">
+  <script>window.location.replace("{{ target }}");</script>
+</head>
+<body>
+  <p>Taking you to <a href="{{ target }}">Discboard on the App Store</a>…</p>
+</body>
+</html>
