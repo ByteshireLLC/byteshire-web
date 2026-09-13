@@ -15,7 +15,7 @@ Gershwin's Taxi Horns is licensed, not sold, to you for use only under these ter
 
 ## Your use of the app
 
-Gershwin's Taxi Horns is an instrument: it plays a honk when you tap a horn. It sounds even when your device's mute switch is on, as instrument apps do, so you are responsible for where and how loudly you play it. The app keeps nothing but your tuning choice, on your device, as described in our [Privacy Policy](https://byteshire.com/taxihorns-privacy/).
+Gershwin's Taxi Horns is an instrument: it plays a honk when you tap a horn. It sounds even when your device's mute switch is on, as instrument apps do, so you are responsible for where and how loudly you play it. The app keeps nothing but your tuning and sound choices, on your device, as described in our [Privacy Policy](https://byteshire.com/taxihorns-privacy/).
 
 The app contains no recording of any orchestra or performance. Its two tunings are our reading of the pitches used for the taxi horns in *An American in Paris*; they are offered for play and study, not as a reference for tuning a real instrument.
 

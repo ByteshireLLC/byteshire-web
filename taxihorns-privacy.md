@@ -15,11 +15,13 @@ Gershwin's Taxi Horns is made by Byteshire LLC ("we," "us"). This policy explain
 
 ## What the app reads, and why
 
-Nothing. Gershwin's Taxi Horns asks for no permissions and reads no files, contacts, photos, location, or microphone. It contains no networking code, so it never makes a request to us or to anyone else.
+Gershwin's Taxi Horns asks for no permissions and reads no files, contacts, photos, location, or microphone. It contains no networking code, so it never makes a request to us or to anyone else.
+
+The one thing it reads is how you are tilting the device, from its motion sensors, so the picture behind the horns and the light on them can shift as you move. That reading is used on the device, in the moment, and nothing else: it is not stored, not sent anywhere, and not used to work out anything about you or what you are doing.
 
 ## What the app stores, and where
 
-The app stores one thing, on your device only: which of the two tunings you last chose, so the horns are tuned the same way the next time you open it. That preference is a single word in the app's own settings storage. It never leaves your device, and it says nothing about you.
+The app stores two things, on your device only: which of the two tunings you last chose, and which horn sound, so the app sounds the same the next time you open it. Each preference is a single word in the app's own settings storage. They never leave your device, and they say nothing about you.
 
 There is no library, no history of what you played, no database, and no cloud account.
 
@@ -37,7 +39,7 @@ Gershwin's Taxi Horns is not directed at children and collects no personal infor
 
 ## Your control and data deletion
 
-There is nothing of yours for us to delete, because we never receive anything. Deleting the app removes its one stored preference along with it.
+There is nothing of yours for us to delete, because we never receive anything. Deleting the app removes its two stored preferences along with it.
 
 ## Changes to this policy
 
