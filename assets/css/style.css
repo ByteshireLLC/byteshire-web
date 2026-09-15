@@ -138,7 +138,20 @@ a { color: var(--accent); }
 .legal-meta { color: var(--muted); }
 .legal-back { margin-top: 40px; }
 
+/* Promo board landing page (/b/<slug>/) */
+.promo-board { padding: 0 0 32px; }
+.promo-wallpaper { margin: 0; background: var(--surface); }
+.promo-wallpaper img { display: block; width: 100%; max-height: 70vh; object-fit: cover; }
+.promo-body { text-align: center; padding-top: 32px; }
+.promo-body h1 { font-size: 2.6rem; margin: 0 0 8px; letter-spacing: -0.02em; }
+.promo-kicker { margin: 0 0 4px; color: var(--muted); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.promo-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.button-secondary { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); }
+.promo-hint { color: var(--muted); font-size: 0.95rem; max-width: 34em; margin: 20px auto 0; }
+.promo-credit { margin-top: 28px; }
+
 @media (max-width: 640px) {
   .features { grid-template-columns: 1fr; }
   .hero h1 { font-size: 2.25rem; }
+  .promo-body h1 { font-size: 2rem; }
 }

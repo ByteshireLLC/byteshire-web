@@ -1,0 +1,41 @@
+---
+# The landing page for a promotional discboard at /b/<slug>/.
+#
+# Discboard claims /b/* as a universal link, so on a device with the app a tap
+# opens the board directly and this page is never seen. It is the fallback for
+# everyone else: people without the app, a link pasted into Safari, or an in-app
+# browser that ignores universal links.
+#
+# It shows the board's wallpaper, never its album covers. App Store Review
+# Guideline 4.5.2(ii) bars using cover art in marketing without rights-holder
+# permission; the covers appear only inside the app. See Discboard #108.
+#
+# Front matter a board page supplies (scripts/publish_board.py in the Discboard
+# repo writes it):
+#   promo_slug      the board's slug, matching its folder name
+#   title           the board's name
+#   description     one or two sentences on the board's theme
+#   wallpaper_alt   alt text for the wallpaper image
+#   wallpaper_credit  optional credit line (artist, title, license)
+layout: default
+---
+{%- capture store_url -%}https://apps.apple.com/app/id{{ site.discboard_app_id }}?pt={{ site.discboard_campaign_pt }}&ct=promo-{{ page.promo_slug | uri_escape }}&mt=8{%- endcapture -%}
+<article class="promo-board">
+  <figure class="promo-wallpaper">
+    <img src="wallpaper.jpg" alt="{{ page.wallpaper_alt | escape }}">
+  </figure>
+  <div class="wrap promo-body">
+    <p class="promo-kicker">A discboard</p>
+    <h1>{{ page.title }}</h1>
+    <p class="lede">{{ page.description }}</p>
+    <p class="cta promo-actions">
+      <a class="button" href="discboard://b/{{ page.promo_slug }}">Open in Discboard</a>
+      <a class="button button-secondary" href="{{ store_url }}">Get Discboard on the App Store</a>
+    </p>
+    <p class="promo-hint">Already have Discboard? Tap “Open in Discboard” and the board opens in the app. New to Discboard? Get it from the App Store, then come back and tap this link again.</p>
+    {{ content }}
+    {%- if page.wallpaper_credit %}
+    <p class="fine-print promo-credit">Wallpaper: {{ page.wallpaper_credit }}</p>
+    {%- endif %}
+  </div>
+</article>

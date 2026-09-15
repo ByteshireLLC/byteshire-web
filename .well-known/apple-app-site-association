@@ -7,6 +7,15 @@
           {
             "/": "/share",
             "comment": "Share-extension launch trigger — foregrounds Discboard after a board pick."
+          },
+          {
+            "/": "/b/*/?*",
+            "exclude": true,
+            "comment": "Files inside a promo board's folder (the board file, its wallpaper) stay on the web."
+          },
+          {
+            "/": "/b/*",
+            "comment": "Promo board page — opens the board in Discboard."
           }
         ]
       }
