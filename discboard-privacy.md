@@ -6,14 +6,14 @@ permalink: /discboard-privacy/
 effective: 2026-06-07
 back_url: /discboard/
 back_label: Discboard
-updated: 2026-06-07
+updated: 2026-09-15
 ---
 
 Discboard is made by Byteshire LLC ("we," "us"). This policy explains what happens to your information when you use the Discboard app on iPhone, iPad, and Mac.
 
 ## The short version
 
-**Discboard does not collect your personal data.** We have no servers, no user accounts, no analytics, no advertising, and no tracking. We never see your boards, your music, your photos, or your purchases. Everything the app stores stays on your device and, if you have iCloud enabled, in your own private iCloud account — which only you can access.
+**Discboard does not collect your personal data.** We have no user accounts, no analytics, no advertising, and no tracking, and we run no servers that receive your data. We never see your boards, your music, your photos, or your purchases. Everything the app stores stays on your device and, if you have iCloud enabled, in your own private iCloud account — which only you can access.
 
 ## What the app stores, and where
 
@@ -42,6 +42,10 @@ If the "Shiny effect" is enabled, Discboard reads your device's motion sensors t
 ## Sharing an album into Discboard
 
 If you share a **Spotify** album into Discboard, the app requests that album's public title and thumbnail from Spotify's public oEmbed service, sending only the public album link you shared. No personal information is included. This is governed by [Spotify's Privacy Policy](https://www.spotify.com/legal/privacy-policy/). Album artwork is otherwise fetched from Apple's artwork servers.
+
+## Opening a Discboard link
+
+If you open a discboard link on byteshire.com, Discboard downloads that published board from byteshire.com, which is hosted by GitHub Pages. It is an ordinary request for a public file and carries nothing about you, your boards, or your music library. Like any website visit, it reaches GitHub's servers, which may log standard request details such as your IP address under [GitHub's Privacy Statement](https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement). GitHub Pages does not share those logs with Byteshire.
 
 ## Purchases
 
