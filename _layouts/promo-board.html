@@ -1,5 +1,11 @@
 ---
-# The landing page for a promotional discboard at /b/<slug>/.
+# The landing page for a promotional discboard at /discboards/<slug>/.
+#
+# Boards first lived at /b/<slug>/, and Discboard 1.3.1 only knows that path.
+# Until 1.3.1 is retired, each /b/<slug>/ keeps a symlink to the board file (the
+# app downloads it from there) and an index.html that forwards to the new page.
+# The association file still claims only /b/*, and the Open button and Smart
+# App Banner below still use /b/, because those are the forms 1.3.1 understands.
 #
 # Discboard claims /b/* as a universal link, so on a device with the app a tap
 # opens the board directly and this page is never seen. It is the fallback for
