@@ -21,7 +21,8 @@ Praying, browsing, and syncing in Lux Fidelium are free. **Lux Fidelium Premium*
 - **Subscription options:**
   - **Monthly** — $0.99 (US) per month.
   - **Yearly** — $9.99 (US) per year.
-- **Free trial:** new subscribers get a **14-day free trial**. If you have previously used the trial, you may not be eligible again.
+- **Free trial:** new subscribers get a free trial of **two weeks** on the monthly plan or **one month** on the yearly plan. If you have previously used a trial, you may not be eligible again.
+- **Family Sharing:** a subscription can be shared with up to five other members of your Apple Family Sharing group.
 - Prices are in US dollars and may vary by region; the exact price, currency, and any applicable taxes are shown in the app before you confirm a purchase.
 - Your statistics are kept whether or not you subscribe, so if your subscription ends, nothing is lost and the full statistics return if you subscribe again.
 
