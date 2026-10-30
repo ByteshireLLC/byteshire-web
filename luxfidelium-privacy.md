@@ -4,7 +4,7 @@ title: Lux Fidelium Privacy Policy
 description: How Lux Fidelium handles your information — the short version is that it doesn't collect any.
 permalink: /luxfidelium-privacy/
 effective: 2026-10-23
-updated: 2026-10-23
+updated: 2026-10-30
 ---
 
 Lux Fidelium is made by Byteshire LLC ("we," "us"). This policy explains what happens to your information when you use the Lux Fidelium app on iPhone, iPad, and Apple Watch.
@@ -22,9 +22,9 @@ Lux Fidelium keeps a few things so it can remember your place and your choices. 
 
 Also kept for you:
 
-- Your pinned Home tiles, in your private iCloud key-value storage.
-- Your preferred prayer languages, display settings such as Serif Text, and where you were in a prayer, on your device only.
-- Scripture readings you've viewed, cached on your device so they open again without a connection.
+- Your pinned Home tiles and your choice of what appears on Home, in your private iCloud key-value storage.
+- Your preferred prayer languages, display settings such as Serif Text and your color theme, and where you were in a prayer, on your device only.
+- Any scripture readings you've viewed, cached on your device so they open again without a connection.
 
 This data lives in your personal Apple account; Byteshire cannot read it. If you turn off iCloud for Lux Fidelium, it stays only on your device.
 
@@ -34,7 +34,7 @@ When you pray on both devices, your iPhone and Apple Watch exchange your place i
 
 ## Scripture readings and the liturgical calendar
 
-To show a day's readings, Lux Fidelium requests that day's page, and sometimes a chapter of the Bible, from the website of the United States Conference of Catholic Bishops, bible.usccb.org. To know which feast or season a date falls in, it requests that year's liturgical calendar from the open Liturgical Calendar API at litcal.johnromanodorazio.com. These are ordinary requests for public pages and carry nothing about you, your prayers, or your statistics. Like any website visit, they reach those sites' servers, which may log standard request details such as your IP address under their own policies.
+Prayer and the liturgical day on Home work without any of the requests in this section. Where Lux Fidelium offers daily readings, it requests that day's page, and sometimes a chapter of the Bible, from the website of the United States Conference of Catholic Bishops, bible.usccb.org, and it requests that year's liturgical calendar from the open Liturgical Calendar API at litcal.johnromanodorazio.com to know which feast or season a date falls in. These are ordinary requests for public pages and carry nothing about you, your prayers, or your statistics. Like any website visit, they reach those sites' servers, which may log standard request details such as your IP address under their own policies.
 
 Where Lux Fidelium offers a downloadable scripture pack, it downloads it from the public part of Apple's CloudKit, anonymously.
 

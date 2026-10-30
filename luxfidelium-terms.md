@@ -4,7 +4,7 @@ title: Lux Fidelium Terms of Use
 description: The terms that govern your use of the Lux Fidelium app, including the Lux Fidelium Premium subscription.
 permalink: /luxfidelium-terms/
 effective: 2026-10-23
-updated: 2026-10-23
+updated: 2026-10-30
 ---
 
 These Terms of Use govern your use of the Lux Fidelium app, made by Byteshire LLC ("we," "us"). By downloading or using Lux Fidelium, you agree to these terms.
@@ -17,7 +17,7 @@ Lux Fidelium is licensed, not sold, to you for use only under these terms and un
 
 Praying, browsing, and syncing in Lux Fidelium are free. **Lux Fidelium Premium** is an optional auto-renewing subscription that supports the app and adds features on top of it.
 
-- **What Premium unlocks:** your full prayer statistics, including the minutes you've prayed and the prayers you return to most. Your count of completed prayers is always free. More features may be added to Premium over time.
+- **What Premium unlocks:** your full prayer statistics, including the minutes you've prayed and the prayers you return to most, and a choice of color themes, including themes that follow the liturgical year. Your count of completed prayers is always free. More features may be added to Premium over time.
 - **Subscription options:**
   - **Monthly** — $0.99 (US) per month.
   - **Yearly** — $9.99 (US) per year.
@@ -36,7 +36,7 @@ Praying, browsing, and syncing in Lux Fidelium are free. **Lux Fidelium Premium*
 
 ## Prayer texts and readings
 
-The prayers, translations, and scripture readings in Lux Fidelium come from their publishers and from public-domain sources, which keep their own rights. They are provided for your personal devotion and may not be copied out of the app for redistribution. Daily readings are shown from the website of the United States Conference of Catholic Bishops.
+The prayers, translations, and any scripture readings in Lux Fidelium come from their publishers and from public-domain sources, which keep their own rights. They are provided for your personal devotion and may not be copied out of the app for redistribution. Where the app offers daily readings, they are shown from the website of the United States Conference of Catholic Bishops.
 
 ## Acceptable use
 
