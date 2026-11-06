@@ -4,7 +4,7 @@ title: Lux Fidelium Privacy Policy
 description: How Lux Fidelium handles your information — the short version is that it doesn't collect any.
 permalink: /luxfidelium-privacy/
 effective: 2026-10-23
-updated: 2026-10-30
+updated: 2026-11-06
 ---
 
 Lux Fidelium is made by Byteshire LLC ("we," "us"). This policy explains what happens to your information when you use the Lux Fidelium app on iPhone, iPad, and Apple Watch.
@@ -24,7 +24,7 @@ Also kept for you:
 
 - Your pinned Home tiles and your choice of what appears on Home, in your private iCloud key-value storage.
 - Your preferred prayer languages, display settings such as Serif Text and your color theme, and where you were in a prayer, on your device only.
-- Any scripture readings you've viewed, cached on your device so they open again without a connection.
+- Where the app offers scripture readings, any you've viewed, cached on your device so they open again without a connection.
 
 This data lives in your personal Apple account; Byteshire cannot read it. If you turn off iCloud for Lux Fidelium, it stays only on your device.
 
