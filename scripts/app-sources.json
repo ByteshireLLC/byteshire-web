@@ -29,5 +29,37 @@
       "iPhone 17 Pro - Deep Blue - Portrait",
       "iPad Pro 13 - M4 - Space Gray - Landscape"
     ]
+  },
+  "luxfidelium": {
+    "repo": "LuxFidelium",
+    "assets": "LuxFidelium-assets/LuxFidelium",
+    "appStoreId": "6761285880",
+    "icon": "AppStore/templates/brand/Glass.svg",
+    "ogImage": "AppStore/output/placements/iPhone_17_Pro_-_Silver_-_Portrait/header.png",
+    "captures": {
+      "iphone-home": "Screenshots/iPhone_01_HomeScreen_Light.png",
+      "iphone-rosary": "Screenshots/iPhone_02_RosaryLuminousMysteries_Light.png",
+      "iphone-rosary-es": "Screenshots/iPhone_02_RosaryLuminousMysteries_es_Light.png",
+      "iphone-rosary-la": "Screenshots/iPhone_02_RosaryLuminousMysteries_la_Light.png",
+      "iphone-pray": "Screenshots/iPhone_03_RosaryPrayerMode_Light.png",
+      "iphone-pray-dark": "Screenshots/iPhone_03_RosaryPrayerMode_Dark.png",
+      "iphone-pray-es": "Screenshots/iPhone_03_RosaryPrayerMode_es_Light.png",
+      "iphone-index": "Screenshots/iPhone_04_Index_Light.png",
+      "ipad-home": "Screenshots/iPad_01_HomeScreen_Light.png",
+      "watch-home": "Screenshots/watchOS_01_HomeScreen.png",
+      "watch-rosary": "Screenshots/watchOS_02_RosaryLuminousMysteries.png",
+      "watch-pray": "Screenshots/watchOS_03_RosaryPrayerMode.png"
+    },
+    "props": {
+      "_comment": "The icon's layers, drawn as line work: the rose-window tracery, its glass and its light (AppStore/templates/brand). Copied as SVG.",
+      "brand": [
+        "AppStore/templates/brand/*.svg"
+      ]
+    },
+    "frames": [
+      "iPhone 17 Pro - Silver - Portrait",
+      "iPad Pro 13 - M4 - Silver - Portrait",
+      "Apple Watch S11 - 46mm - Aluminum Silver + Sport Band Purple Fog"
+    ]
   }
 }

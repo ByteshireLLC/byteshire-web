@@ -1,0 +1,195 @@
+---
+// Lux Fidelium's landing page (SPEC › Principles › "Every landing page is its own
+// design"). It opens in the dark before dawn on the icon's own rose window, lit
+// from behind: Lux Fidelium is "light of the faithful". Its light falls into a
+// day of prayer, morning to night, the listing's promise that Lux meets you
+// "wherever your day finds you". Each hour has its own light and pairs with a
+// real moment the app is used in, shown only in real captures: the page never
+// imitates the app, and holy things are never decoration (SPEC › Principles).
+//
+// Listing copy comes from Lux Fidelium's MARKETING.md, by section heading, so a
+// renamed section fails the build. Captures, art and frames come from
+// scripts/import-app.py. The page's own lines live here.
+import { getEntry } from "astro:content";
+import { getImage } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import Blocks from "../../components/Blocks.astro";
+import Device from "../../components/Device.astro";
+import { appStoreURL } from "../../lib/appstore";
+import { listingSections, firstParagraph, firstList } from "../../lib/listing";
+import badge from "../../assets/badges/app-store-black-en-us.svg";
+import ogImage from "../../assets/apps/luxfidelium/og.jpg";
+import glass from "../../assets/apps/luxfidelium/props/brand/glass.svg";
+import light from "../../assets/apps/luxfidelium/props/brand/light.svg";
+import tracery from "../../assets/apps/luxfidelium/props/brand/tracery.svg";
+import phoneHome from "../../assets/apps/luxfidelium/captures/iphone-home.jpg";
+import phonePray from "../../assets/apps/luxfidelium/captures/iphone-pray.jpg";
+import phonePrayDark from "../../assets/apps/luxfidelium/captures/iphone-pray-dark.jpg";
+import phoneRosaryEs from "../../assets/apps/luxfidelium/captures/iphone-rosary-es.jpg";
+import watchPray from "../../assets/apps/luxfidelium/captures/watch-pray.jpg";
+import watchHome from "../../assets/apps/luxfidelium/captures/watch-home.jpg";
+
+const app = (await getEntry("apps", "luxfidelium"))!;
+const listing = (await getEntry("listings", "luxfidelium"))!.data;
+const { intro, section } = listingSections(listing.description);
+const storeURL = appStoreURL(app, "byteshire-web");
+const og = await getImage({ src: ogImage, width: 1200, format: "jpg" });
+---
+<Base title="Lux Fidelium" description={app.data.summary} app={app} ogImage={new URL(og.src, Astro.site).toString()}>
+  <section class="nave">
+    <div class="window" aria-hidden="true">
+      <img class="w-glass" src={glass.src} alt="" />
+      <img class="w-light" src={light.src} alt="" />
+      <img class="w-tracery" src={tracery.src} alt="" />
+    </div>
+    <div class="beams" aria-hidden="true"></div>
+    <div class="nave-copy">
+      <p class="latin">Lux Fidelium</p>
+      <h1>Light of the faithful.</h1>
+      <p>{listing.promotionalText}</p>
+      <a class="store-badge" href={storeURL}><img src={badge.src} width={badge.width} height={badge.height} alt="Download on the App Store"></a>
+    </div>
+  </section>
+
+  <section class="hour morning">
+    <div class="sun" aria-hidden="true"></div>
+    <div class="copy">
+      <p class="when">Morning</p>
+      <h2>Wherever your day finds you.</h2>
+      <p>{firstParagraph(intro)}</p>
+    </div>
+    <Device frame="iphone-17-pro-silver-portrait" screens={[phoneHome]} sizes="(max-width: 760px) 60vw, 300px" alt="Lux Fidelium's Home, showing the day in the Church's year" />
+  </section>
+
+  <section class="hour noon">
+    <div class="sun" aria-hidden="true"></div>
+    <Device frame="iphone-17-pro-silver-portrait" screens={[phonePray]} sizes="(max-width: 760px) 60vw, 300px" alt="Pray Mode on iPhone, in large type with one Continue button" />
+    <div class="copy">
+      <p class="when">Noon</p>
+      <h2>Pray with your hands full.</h2>
+      <p>{firstParagraph(section("Pray with your hands full"))}</p>
+    </div>
+  </section>
+
+  <section class="hour afternoon">
+    <div class="copy wide">
+      <p class="when">Afternoon</p>
+      <h2>One prayer, every device.</h2>
+      <p>{firstParagraph(section("One prayer, every device"))}</p>
+    </div>
+    <div class="together">
+      <Device frame="apple-watch-s11-46mm-aluminum-silver-sport-band-purple-fog" screens={[watchHome]} sizes="(max-width: 760px) 34vw, 180px" alt="Lux Fidelium's prayers on Apple Watch" />
+      <Device frame="iphone-17-pro-silver-portrait" screens={[phoneRosaryEs]} sizes="(max-width: 760px) 46vw, 240px" alt="The Rosary on iPhone, in Spanish" />
+    </div>
+  </section>
+
+  <section class="hour evening">
+    <div class="sun" aria-hidden="true"></div>
+    <div class="copy">
+      <p class="when">Evening</p>
+      <h2>Pray with your eyes closed.</h2>
+      <p>{firstParagraph(section("Pray with your eyes closed"))}</p>
+    </div>
+    <Device frame="apple-watch-s11-46mm-aluminum-silver-sport-band-purple-fog" screens={[watchPray]} sizes="(max-width: 760px) 50vw, 260px" alt="Pray Mode on Apple Watch: the whole screen is one button" />
+  </section>
+
+  <section class="hour night">
+    <Device frame="iphone-17-pro-silver-portrait" screens={[phonePrayDark]} sizes="(max-width: 760px) 60vw, 300px" alt="Pray Mode on iPhone in the dark" />
+    <div class="copy">
+      <p class="when">Night</p>
+      <h2>The prayers you know by heart.</h2>
+      <ul>{firstList(section("The prayers you know by heart")).map((item) => <li>{item}</li>)}</ul>
+      <h3>Make it yours</h3>
+      <ul>{firstList(section("Make it yours")).map((item) => <li>{item}</li>)}</ul>
+    </div>
+  </section>
+
+  <section class="hour dawn">
+    <div class="copy wide">
+      <h2>Your prayer stays private.</h2>
+      <div class="plan-card">
+        <Blocks blocks={section("Your prayer stays private")} />
+        <p class="fine-print"><a href="/luxfidelium-terms/">Terms of Use</a> · <a href="/luxfidelium-privacy/">Privacy Policy</a></p>
+      </div>
+      <a class="store-badge" href={storeURL}><img src={badge.src} width={badge.width} height={badge.height} alt="Download on the App Store"></a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  h1, h2, h3, .when, .latin { font-family: var(--brand-font); }
+
+  /* Before dawn: the icon's window, lit from behind, its light falling below. */
+  .nave { position: relative; overflow: hidden; background: linear-gradient(180deg, rgba(42, 9, 20, 0) 70%, #2a0914 100%), radial-gradient(ellipse at 50% 30%, #4a1124 0%, #2a0914 55%, #16040a 100%); color: #FDF5E8; text-align: center; padding: 72px 24px 120px; }
+  .window { position: relative; width: min(440px, 76vw); aspect-ratio: 1; margin: 0 auto 8px; }
+  .window img { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .w-glass { filter: drop-shadow(0 0 40px rgba(163, 64, 94, 0.55)); }
+  .w-light { filter: drop-shadow(0 0 18px rgba(255, 236, 200, 0.95)) drop-shadow(0 0 60px rgba(235, 198, 120, 0.7)); animation: breathe 9s ease-in-out infinite; }
+  .w-tracery { filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.4)); }
+  @keyframes breathe { 50% { opacity: 0.82; } }
+  .beams { position: absolute; left: 50%; top: 40%; width: 1400px; height: 1200px; translate: -50% 0; pointer-events: none;
+    -webkit-mask: linear-gradient(180deg, #000 0, #000 15%, transparent 45%); mask: linear-gradient(180deg, #000 0, #000 15%, transparent 45%);
+    background: conic-gradient(from 160deg at 50% 0%, transparent 0deg, rgba(235, 198, 120, 0.10) 8deg, transparent 14deg, rgba(240, 149, 176, 0.09) 22deg, transparent 30deg, rgba(235, 198, 120, 0.08) 38deg, transparent 46deg); }
+  .nave-copy { position: relative; }
+  .latin { color: #EBC678; font-variant: small-caps; letter-spacing: 0.14em; font-size: 1.2rem; margin: 0 0 8px; }
+  .nave h1 { font-size: clamp(2.8rem, 7vw, 5.2rem); line-height: 1; letter-spacing: -0.02em; font-weight: 760; margin: 0 0 18px; color: #FDF5E8; }
+  .nave p { color: #f0dcd9; font-size: 1.2rem; line-height: 1.55; max-width: 30em; margin: 0 auto 24px; }
+
+  /* The hours: each its own light, the sun moving across the day. */
+  .hour { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 56px; align-items: center; padding: 110px max(24px, calc(50% - 520px)); }
+  .hour > :global(.device) { width: min(300px, 100%); justify-self: center; position: relative; }
+  .copy { position: relative; max-width: 30em; }
+  .copy.wide { max-width: 40em; grid-column: 1 / -1; justify-self: center; text-align: center; }
+  .when { font-size: 1.05rem; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 14px; }
+  h2 { font-size: clamp(2.3rem, 5vw, 3.8rem); line-height: 1.03; letter-spacing: -0.015em; font-weight: 760; margin: 0 0 18px; }
+  h3 { font-size: 1.4rem; margin: 28px 0 6px; }
+  .copy p { font-size: 1.15rem; line-height: 1.62; }
+  .copy ul { padding-left: 1.2em; line-height: 1.55; }
+  .copy li { margin: 6px 0; }
+  .sun { position: absolute; width: 900px; height: 900px; border-radius: 50%; pointer-events: none; }
+
+  .morning { background: linear-gradient(180deg, #2a0914 0%, #8a4a4a 7%, #f2cfa8 22%, #FBEBD6 45%); color: var(--brand-text); padding-top: 180px; }
+  .morning .sun { left: -320px; bottom: -520px; background: radial-gradient(circle, rgba(245, 190, 120, 0.55), rgba(245, 190, 120, 0) 65%); }
+  .morning .when { color: #8a5424; }
+  .morning h2 { color: var(--brand-button); }
+  .morning p { color: var(--brand-muted); }
+
+  .noon { background: linear-gradient(180deg, #FBEBD6, #FFF8EA); color: var(--brand-text); }
+  .noon .sun { left: 50%; top: -620px; translate: -50% 0; background: radial-gradient(circle, rgba(235, 198, 120, 0.7), rgba(235, 198, 120, 0) 62%); }
+  .noon .when { color: #7d5d14; }
+  .noon h2 { color: var(--brand-button); }
+  .noon p { color: var(--brand-muted); }
+
+  .afternoon { background: linear-gradient(180deg, #FFF8EA, #F6E2D6); color: var(--brand-text); }
+  .afternoon .when { color: #8e2f4d; }
+  .afternoon h2 { color: var(--brand-button); }
+  .afternoon p { color: var(--brand-muted); }
+  .together { grid-column: 1 / -1; display: flex; justify-content: center; align-items: flex-end; gap: 36px; }
+  .together :global(.device:first-child) { width: min(180px, 34vw); margin-bottom: 50px; }
+  .together :global(.device:last-child) { width: min(240px, 46vw); }
+
+  .evening { background: linear-gradient(180deg, #F6E2D6, #D99A9C 70%, #8E3B52); color: #2A1219; }
+  .evening .sun { right: -360px; bottom: -560px; background: radial-gradient(circle, rgba(255, 170, 120, 0.6), rgba(255, 170, 120, 0) 62%); }
+  .evening .when { color: #6E1631; }
+  .evening h2 { color: #4a0f22; }
+  .evening p { color: #3a1a22; }
+
+  .night { background: linear-gradient(180deg, #8E3B52, #3A0D1C 30%, #1f0710); color: #FDF5E8; }
+  .night .when { color: #EBC678; }
+  .night h2, .night h3 { color: #FDF5E8; }
+  .night li { color: #f0dcd9; }
+
+  .dawn { background: linear-gradient(180deg, #1f0710, #3A0D1C 6%, #e9cfc4 20%, #F6EBDD 32%); color: var(--brand-text); padding-top: 260px; }
+  .dawn h2 { color: var(--brand-button); }
+  .dawn .plan-card { text-align: left; margin: 0 0 24px; }
+
+  @media (max-width: 760px) {
+    .hour { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-top: 80px; padding-bottom: 80px; text-align: center; }
+    .morning { padding-top: 140px; }
+    .copy { justify-self: center; }
+    .copy ul { text-align: left; }
+    .noon > :global(.device), .night > :global(.device) { order: 2; }
+    .together { gap: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .w-light { animation: none; } }
+</style>

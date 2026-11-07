@@ -1,6 +1,6 @@
 // An RSS feed of an app's App Store versions, one item per version.
 import type { APIRoute, GetStaticPaths } from "astro";
-import { appsWithPages } from "../../../lib/app-pages";
+import { appsWithPages, releaseNotes } from "../../../lib/app-pages";
 
 export const getStaticPaths: GetStaticPaths = async () =>
   (await appsWithPages()).map(({ app, releases }) => ({ params: { app: app.id }, props: { app, releases } }));
@@ -14,7 +14,7 @@ export const GET: APIRoute<Props> = ({ props, site }) => {
   const { app, releases } = props;
   const page = new URL(`/${app.id}/whats-new/`, site);
   const items = releases.versions.map((release) => {
-    const html = release.blocks
+    const html = releaseNotes(release, app.data.name)
       .map((block) =>
         block.type === "ul"
           ? `<ul>${block.items.map((item) => `<li>${escape(item)}</li>`).join("")}</ul>`

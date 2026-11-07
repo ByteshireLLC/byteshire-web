@@ -2,19 +2,24 @@
 // A real app capture inside Apple's own product bezel, the way Apple's marketing
 // guidelines ask for: the bezel unaltered, never tilted, shadowed or covered by
 // copy (SPEC › Principles). The capture sits under the bezel's transparent screen.
-// Screen rectangles are in the bezel's original pixels, from Koubou's Frames.json;
-// scripts/import-app.py copies the bezels into src/assets/frames/.
+// scripts/import-app.py copies each bezel into src/assets/frames/ from Koubou's
+// frame cache; geometry is in the bezel's original pixels: its size, then the
+// screen's offset, size and corner radius.
 import { Image } from "astro:assets";
-import iphoneFrame from "../assets/frames/iphone-17-pro-deep-blue-portrait.png";
-import ipadFrame from "../assets/frames/ipad-pro-13-m4-space-gray-landscape.png";
 
-const frames = {
-  iphone: { image: iphoneFrame, w: 1350, h: 2760, x: 72, y: 69, sw: 1206, sh: 2622, radius: 150 },
-  ipad: { image: ipadFrame, w: 3000, h: 2300, x: 134, y: 126, sw: 2732, sh: 2048, radius: 50 },
+const geometry = {
+  "iphone-17-pro-deep-blue-portrait": { w: 1350, h: 2760, x: 72, y: 69, sw: 1206, sh: 2622, radius: 150 },
+  "iphone-17-pro-silver-portrait": { w: 1350, h: 2760, x: 72, y: 69, sw: 1206, sh: 2622, radius: 150 },
+  "ipad-pro-13-m4-space-gray-landscape": { w: 3000, h: 2300, x: 134, y: 126, sw: 2732, sh: 2048, radius: 50 },
+  "ipad-pro-13-m4-silver-portrait": { w: 2300, h: 3000, x: 118, y: 124, sw: 2064, sh: 2752, radius: 50 },
+  "apple-watch-s11-46mm-aluminum-silver-sport-band-purple-fog": { w: 560, h: 880, x: 75, y: 189, sw: 416, sh: 496, radius: 96 },
 } as const;
+export type Frame = keyof typeof geometry;
+
+const files = import.meta.glob<{ default: ImageMetadata }>("../assets/frames/*.png", { eager: true });
 
 interface Props {
-  kind?: keyof typeof frames;
+  frame: Frame;
   // One capture, or several stacked for a crossfade (data-screen index).
   screens: ImageMetadata[];
   alt: string;
@@ -23,21 +28,24 @@ interface Props {
   class?: string;
   eager?: boolean;
 }
-const { kind = "iphone", screens, alt, sizes, class: className = "", eager = false } = Astro.props;
-const f = frames[kind];
+const { frame, screens, alt, sizes, class: className = "", eager = false } = Astro.props;
+const f = geometry[frame];
+const bezel = files[`../assets/frames/${frame}.png`]?.default;
+if (!bezel) throw new Error(`No bezel at src/assets/frames/${frame}.png — add it to the app's frames in scripts/app-sources.json and import again`);
 const pct = (n: number, d: number) => `${((n / d) * 100).toFixed(4)}%`;
 // The screen's rounded corners, so a capture never shows past the bezel at small sizes.
 const corner = `${pct(f.radius, f.sw)} / ${pct(f.radius, f.sh)}`;
 const screenStyle = `left:${pct(f.x, f.w)};top:${pct(f.y, f.h)};width:${pct(f.sw, f.w)};height:${pct(f.sh, f.h)};border-radius:${corner}`;
-const widths = kind === "iphone" ? [320, 640, 960] : [640, 1280];
+// Candidate widths for the browser to pick from, never wider than the source.
+const widths = (max: number) => [240, 480, 960, 1440].filter((w) => w < max).concat(max).slice(0, 4);
 const loading = eager ? "eager" : "lazy";
 ---
-<figure class:list={["device", `device-${kind}`, className]} style={`aspect-ratio:${f.w}/${f.h}`}>
+<figure class:list={["device", className]} style={`aspect-ratio:${f.w}/${f.h}`}>
   <div class="device-screen" style={screenStyle}>
     {screens.map((screen, index) => (
       <Image
         src={screen}
-        widths={widths}
+        widths={widths(screen.width)}
         sizes={sizes}
         alt={index === 0 ? alt : ""}
         data-screen={index}
@@ -46,7 +54,7 @@ const loading = eager ? "eager" : "lazy";
       />
     ))}
   </div>
-  <Image class="device-frame" src={f.image} widths={widths} sizes={sizes} alt="" loading={loading} />
+  <Image class="device-frame" src={bezel} widths={widths(bezel.width)} sizes={sizes} alt="" loading={loading} />
 </figure>
 
 <style>

@@ -57,8 +57,15 @@ const apps = defineCollection({
         highlight: hexColor,
         text: hexColor,
         mutedText: hexColor,
-        // A typeface in public/fonts/<slug>/, copied there by scripts/import-app.py.
-        font: z.object({ family: z.string(), file: z.string() }).optional(),
+        // Whether the app's look is light or dark, which sets the browser's color
+        // scheme and how cards and borders sit on the background.
+        scheme: z.enum(["dark", "light"]).default("dark"),
+        // The headline typeface. `file` is a font in public/fonts/<slug>/, copied
+        // there by scripts/import-app.py; without one, `fallback` names system
+        // fonts, as for Apple's New York, which Safari offers as ui-serif.
+        font: z
+          .object({ family: z.string(), file: z.string().optional(), fallback: z.string().default("var(--font-sans)") })
+          .optional(),
       })
       .optional(),
     supportEmail: z.email().default("info@byteshire.com"),

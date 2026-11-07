@@ -15,10 +15,12 @@ export default defineConfig({
   compressHTML: false,
   integrations: [
     sitemap({
-      // Short links and the legacy /b/ forwarding pages are redirects, not pages.
-      // An app's own pages under /<app>/ use the names the schema reserves from
-      // short links (support, whats-new), so those stay in.
-      filter: (page) => !/\/(discboard\/(?!support\/|whats-new\/)[a-z]+|b\/[^/]+)\/$/.test(page),
+      // Short links and the legacy /b/ forwarding pages are redirects, not pages,
+      // and design concepts under /concepts/ aren't for search. An app's own pages
+      // under /<app>/ use the names the schema reserves from short links
+      // (support, whats-new), so those stay in.
+      filter: (page) =>
+        !/\/(discboard\/(?!support\/|whats-new\/)[a-z]+|b\/[^/]+)\/$/.test(page) && !page.includes("/concepts/"),
     }),
     passthrough(),
   ],

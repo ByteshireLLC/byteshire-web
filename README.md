@@ -9,13 +9,13 @@ Each app is described once, in `src/content/apps/<slug>.yaml`, and every page ab
 | URL | Source |
 | --- | --- |
 | `/` | `src/pages/index.astro` — Byteshire home, one card per app with `summary` and `landingPage: true` |
-| `/discboard/` | `src/pages/discboard/index.astro` — Discboard's landing page. Every app's landing page is its own design; see `SPEC.md` |
+| `/<app>/` | `src/pages/<app>/index.astro` — the app's landing page, such as `/discboard/` and `/luxfidelium/`. Each is its own design; see `SPEC.md` |
 | `/<app>-privacy/`, `/<app>-terms/` | `src/content/legal/<app>-<kind>.md`, rendered by `src/pages/[page].astro` |
 | `/<app>/<channel>/` | the app's `shortLinks`, rendered by `src/pages/[app]/[channel].astro` — campaign short links (see below) |
 | `/discboards/<slug>/` | `discboards/<slug>/index.html` front matter, rendered by `src/pages/discboards/[slug]/index.astro` — promo boards |
 | `/b/<slug>/` | `b/<slug>/index.html` front matter — the old board URLs, forwarding to `/discboards/<slug>/` |
 
-Brand colors, type and sizes live in `src/styles/tokens.css`, as Tailwind v4 `@theme` tokens. An app with a `brand` in its data file dresses every page under it in its own colors and typeface; studio pages stay neutral.
+Brand colors, type and sizes live in `src/styles/tokens.css`, as Tailwind v4 `@theme` tokens. An app with a `brand` in its data file dresses every page under it in its own colors and typeface, light or dark; studio pages stay neutral. A brand typeface is either a font file the importer copies, like Discboard's Fredoka, or a system font named by its fallback, like Lux Fidelium's New York.
 
 An app with `landingPage: true` and an imported release history also gets `/<app>/whats-new/` (with an RSS feed at `rss.xml`) and `/<app>/support/`, from `src/pages/[app]/`.
 

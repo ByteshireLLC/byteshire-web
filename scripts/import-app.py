@@ -102,7 +102,8 @@ def live_version(app_store_id):
 
 
 def releases(markdown, live):
-    text = section(markdown, "What's New")
+    # A first version has no What's New: App Store Connect doesn't offer the field.
+    text = section(markdown, "What's New") if "\n## What's New\n" in markdown else ""
     headings = list(re.finditer(r"^\*\*(?:Draft|Previous)[^v*]*v([\d.]+)[^*]*\*\*", text, re.M))
     versions = []
     for index, heading in enumerate(headings):
@@ -116,19 +117,31 @@ def releases(markdown, live):
         if version == live["version"]:
             entry["date"] = live["currentVersionReleaseDate"][:10]
         versions.append(entry)
-    if not versions:
-        fail("no shipped What's New versions found")
+    if not any(entry["version"] == live["version"] for entry in versions):
+        # The live version has no notes of its own, as on a first release.
+        versions.insert(0, {"version": live["version"], "date": live["currentVersionReleaseDate"][:10], "blocks": []})
     return versions
 
 
+def longest_side(path):
+    result = subprocess.run(["sips", "-g", "pixelWidth", "-g", "pixelHeight", str(path)], capture_output=True, text=True)
+    sizes = [int(n) for n in re.findall(r"pixel(?:Width|Height): (\d+)", result.stdout)]
+    if result.returncode != 0 or len(sizes) != 2:
+        fail(f"sips could not read the size of {path}: {result.stderr.strip()}")
+    return max(sizes)
+
+
 def resize(source, target, longest):
+    """Shrink to at most `longest` pixels on the long side, as JPEG. Never enlarges."""
     target.parent.mkdir(parents=True, exist_ok=True)
+    longest = min(longest, longest_side(source))
     result = subprocess.run(
         ["sips", "-Z", str(longest), "-s", "format", "jpeg", "-s", "formatOptions", "85", str(source), "--out", str(target)],
         capture_output=True, text=True,
     )
-    if result.returncode != 0:
-        fail(f"sips could not convert {source}: {result.stderr.strip()}")
+    # sips can warn and still exit 0 on a file it can't read, so check the output too.
+    if result.returncode != 0 or not target.exists():
+        fail(f"sips could not convert {source}: {(result.stderr or result.stdout).strip()}")
 
 
 def main():
@@ -190,7 +203,13 @@ def main():
         if not files:
             fail(f"props.{group} matched no files")
         for index, source in enumerate(files, start=1):
-            resize(source, art / "props" / group / f"{index:02d}.jpg", 512)
+            if source.suffix == ".svg":
+                # Vector art keeps its own name and format.
+                target = art / "props" / group / source.name.lower()
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source, target)
+            else:
+                resize(source, art / "props" / group / f"{index:02d}.jpg", 512)
         print(f"wrote {len(files)} {group} to {(art / 'props' / group).relative_to(SITE)}")
 
     # Apple's product bezels, kept as PNG for the transparent screen. Shared by
@@ -204,16 +223,19 @@ def main():
             fail(f"frame {source} not found")
         target = SITE / "src/assets/frames" / (re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-") + ".png")
         target.parent.mkdir(parents=True, exist_ok=True)
-        result = subprocess.run(["sips", "-Z", "1600", str(source), "--out", str(target)], capture_output=True, text=True)
+        longest = min(1600, longest_side(source))
+        result = subprocess.run(["sips", "-Z", str(longest), str(source), "--out", str(target)], capture_output=True, text=True)
         if result.returncode != 0:
             fail(f"sips could not resize {source}: {result.stderr.strip()}")
     print(f"wrote {len(config.get('frames', []))} device frames to src/assets/frames")
 
-    fonts = SITE / "public/fonts" / args.slug
-    fonts.mkdir(parents=True, exist_ok=True)
-    for key in ("file", "license"):
-        shutil.copy2(assets / config["font"][key], fonts / Path(config["font"][key]).name)
-    print(f"copied {config['font']['family']} to {fonts.relative_to(SITE)}")
+    # A brand typeface to serve, when the app's look uses one that browsers don't have.
+    if config.get("font"):
+        fonts = SITE / "public/fonts" / args.slug
+        fonts.mkdir(parents=True, exist_ok=True)
+        for key in ("file", "license"):
+            shutil.copy2(assets / config["font"][key], fonts / Path(config["font"][key]).name)
+        print(f"copied {config['font']['family']} to {fonts.relative_to(SITE)}")
 
 
 if __name__ == "__main__":

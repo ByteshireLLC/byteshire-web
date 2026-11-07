@@ -152,6 +152,11 @@ a { color: var(--color-accent); }
   --color-accent: var(--brand-accent);
   --color-border: rgb(255 255 255 / 0.12);
 }
+.branded-light {
+  color-scheme: light;
+  --color-surface: rgb(0 0 0 / 0.04);
+  --color-border: rgb(0 0 0 / 0.1);
+}
 .branded body {
   background: linear-gradient(180deg, var(--brand-bg-top) 0, var(--brand-bg-bottom) 900px) var(--brand-bg-bottom);
   background-repeat: no-repeat;

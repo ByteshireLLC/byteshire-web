@@ -1,3 +1,24 @@
 name: Lux Fidelium
-status: prerelease
+status: live
 platforms: [iPhone, iPad, Apple Watch]
+summary: Pray the Rosary, or any prayer, on iPhone and Apple Watch. Lux Fidelium keeps your place and your count, so your attention can rest on the prayer.
+landingPage: true
+subscription: true
+appStore:
+  id: "6761285880"
+  providerToken: "128711249"
+# The colors of the app's own asset catalog and icon, as Lux Fidelium's App Store
+# campaign uses them (LuxFidelium-assets › AppStore/templates/lux.css): cream and
+# parchment, wine, and New York, the serif Pray Mode sets prayers in.
+brand:
+  scheme: light
+  backgroundTop: "#FDF5E8"
+  backgroundBottom: "#F6EBDD"
+  accent: "#A3405E"
+  button: "#6E1631"
+  highlight: "#A3405E"
+  text: "#2A1219"
+  mutedText: "#5B3A44"
+  font:
+    family: New York
+    fallback: ui-serif, Georgia, serif

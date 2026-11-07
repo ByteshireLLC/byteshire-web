@@ -15,6 +15,10 @@
 /discboard/support/ page
 /discboard/whats-new/ page
 /discboard/whats-new/rss.xml file
+/luxfidelium/ page
+/luxfidelium/support/ page
+/luxfidelium/whats-new/ page
+/luxfidelium/whats-new/rss.xml file
 /discboard-privacy/ page
 /discboard-terms/ page
 /cirth-privacy/ page

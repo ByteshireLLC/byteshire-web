@@ -36,3 +36,38 @@ export function platformList(platforms: string[]): string {
   if (platforms.length < 3) return platforms.join(" and ");
   return `${platforms.slice(0, -1).join(", ")}, and ${platforms.at(-1)}`;
 }
+
+// The App Store description split at its section headings, for a page that
+// places each section in its own part of the design. `intro` is what comes
+// before the first heading. Spelled-out legal URLs are dropped, as above.
+export function listingSections(description: Block[]) {
+  const intro: Block[] = [];
+  const sections = new Map<string, Block[]>();
+  let current = intro;
+  for (const block of description) {
+    if (block.type === "h") {
+      current = [];
+      sections.set(block.text, current);
+    } else {
+      current.push(withoutBareLegalURLs(block));
+    }
+  }
+  const section = (heading: string) => {
+    const blocks = sections.get(heading);
+    if (!blocks) throw new Error(`The listing has no "${heading}" section`);
+    return blocks;
+  };
+  return { intro, section };
+}
+
+// The text of a section's first paragraph.
+export function firstParagraph(blocks: Block[]) {
+  const block = blocks.find((b) => b.type === "p");
+  return block?.type === "p" ? block.text : "";
+}
+
+// The items of a section's first list.
+export function firstList(blocks: Block[]) {
+  const block = blocks.find((b) => b.type === "ul");
+  return block?.type === "ul" ? block.items : [];
+}

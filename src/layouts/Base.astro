@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import "../styles/global.css";
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const SITE_TITLE = "Byteshire";
-const SITE_DESCRIPTION = "Byteshire LLC makes Discboard — an album-listening app for iPhone, iPad, and Mac.";
+const SITE_DESCRIPTION = "Byteshire LLC makes apps for iPhone, iPad, Mac and Apple Watch, including Discboard and Lux Fidelium.";
 
 const { title, description = SITE_DESCRIPTION, app, ogImage } = Astro.props;
 const isHome = Astro.url.pathname === "/";
@@ -35,18 +35,20 @@ const brandStyle = brand
       `--brand-highlight: ${brand.highlight}`,
       `--brand-text: ${brand.text}`,
       `--brand-muted: ${brand.mutedText}`,
-      brand.font ? `--brand-font: "${brand.font.family}", var(--font-sans)` : "",
+      brand.font ? `--brand-font: "${brand.font.family}", ${brand.font.fallback}` : "",
     ]
       .filter(Boolean)
       .join("; ")
   : undefined;
-const fontFace = brand?.font
+const fontFace = brand?.font?.file
   ? `@font-face { font-family: "${brand.font.family}"; src: url("/fonts/${app!.id}/${brand.font.file}") format("truetype"); font-weight: 300 700; font-display: swap; }`
   : undefined;
 const appPath = app ? `/${app.id}/` : undefined;
+// Studio pages list every app that has a page of its own, as the home page does.
+const appsWithLandingPages = app ? [] : (await getCollection("apps")).filter((entry) => entry.data.landingPage);
 ---
 <!DOCTYPE html>
-<html lang="en" class:list={{ branded: !!brand }} style={brandStyle}>
+<html lang="en" class:list={{ branded: !!brand, "branded-light": brand?.scheme === "light" }} style={brandStyle}>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -102,9 +104,7 @@ const appPath = app ? `/${app.id}/` : undefined;
         <p class="copyright">{app.data.name} is made by <a href="/">Byteshire</a>. © {year} Byteshire LLC</p>
       ) : (
         <nav class="footer-links">
-          <a href="/discboard/">Discboard</a>
-          <a href="/discboard-privacy/">Privacy</a>
-          <a href="/discboard-terms/">Terms</a>
+          {appsWithLandingPages.map((entry) => <a href={`/${entry.id}/`}>{entry.data.name}</a>)}
           <a href="mailto:info@byteshire.com">Contact</a>
         </nav>
         <p class="copyright">© {year} Byteshire LLC</p>

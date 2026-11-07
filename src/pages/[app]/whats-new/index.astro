@@ -3,7 +3,7 @@
 // text exactly as the App Store showed it. Imported by scripts/import-app.py.
 import Base from "../../../layouts/Base.astro";
 import Blocks from "../../../components/Blocks.astro";
-import { appsWithPages, longDate } from "../../../lib/app-pages";
+import { appsWithPages, longDate, releaseNotes } from "../../../lib/app-pages";
 
 export async function getStaticPaths() {
   return (await appsWithPages()).map(({ app, releases }) => ({ params: { app: app.id }, props: { app, releases } }));
@@ -23,7 +23,7 @@ const name = app.data.name;
       <article class="release" id={`v${release.version}`}>
         <h2>Version {release.version}</h2>
         {release.date && <p class="release-date">Released {longDate(release.date)}</p>}
-        <Blocks blocks={release.blocks} />
+        <Blocks blocks={releaseNotes(release, name)} />
       </article>
     ))}
   </div>
