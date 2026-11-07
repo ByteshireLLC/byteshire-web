@@ -1,0 +1,18 @@
+---
+// Renders imported App Store text (paragraphs, headings, bullet lists).
+interface Props {
+  blocks: ({ type: "p" | "h"; text: string } | { type: "ul"; items: string[] })[];
+  headingLevel?: "h2" | "h3";
+}
+const { blocks, headingLevel = "h3" } = Astro.props;
+const Heading = headingLevel;
+---
+{blocks.map((block) =>
+  block.type === "ul" ? (
+    <ul>{block.items.map((item) => <li>{item}</li>)}</ul>
+  ) : block.type === "h" ? (
+    <Heading>{block.text}</Heading>
+  ) : (
+    <p>{block.text}</p>
+  ),
+)}

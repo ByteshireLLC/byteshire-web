@@ -1,0 +1,360 @@
+{
+  "liveVersion": "2.1.1",
+  "versions": [
+    {
+      "version": "2.1.1",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Discboard 2.1.1 brings Repeat to the player and puts your newest albums first when you add to a board."
+        },
+        {
+          "type": "h",
+          "text": "Repeat"
+        },
+        {
+          "type": "p",
+          "text": "A new Repeat button sits beside Shuffle. Turn it on and the album or playlist starts over after its last song. It works with the playback filter too."
+        },
+        {
+          "type": "h",
+          "text": "Your newest albums first"
+        },
+        {
+          "type": "p",
+          "text": "When you add an album, the Library tab now opens on a row of your most recently added albums, newest first. Your full library follows below it."
+        },
+        {
+          "type": "h",
+          "text": "Also in 2.1.1"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Easier sharing to Discboard: the board picker follows your folders and can search by name",
+            "Albums start on the right song when the playback filter is on",
+            "A more reliable first play after opening Discboard on a Mac",
+            "Performance improvements",
+            "Stability improvements"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Thanks for listening — keep the feedback coming."
+        }
+      ],
+      "date": "2026-11-03"
+    },
+    {
+      "version": "2.1",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Discboard 2.1 puts your Apple Music playlists on your discboards."
+        },
+        {
+          "type": "h",
+          "text": "Playlists on your boards"
+        },
+        {
+          "type": "p",
+          "text": "Put any playlist from your Apple Music library on a discboard as a single tile. Find your playlists in the new Playlists tab when you add albums, or drag one onto a board, or share a playlist link to Discboard, then choose between one tile and the playlist's albums. The tile shows the playlist's own picture, or four of its covers when it has none. Tap it for its songs: play, shuffle, or start from any song, with stars and hearts on each one. Playlists play from CarPlay, and a playlist picks up where it left off when you come back to Discboard. While a playlist plays, the player, your watch and the widget show each song's own cover. To see the playlist's picture instead, turn on \"Show playlist art instead of album art\" in Settings, under Appearance."
+        },
+        {
+          "type": "h",
+          "text": "Shuffle whenever you like"
+        },
+        {
+          "type": "p",
+          "text": "Turn shuffle on or off while music plays, with the Shuffle toggle at the top of the queue. It's on CarPlay's Now Playing screen and in your watch's queue too."
+        },
+        {
+          "type": "h",
+          "text": "Also in 2.1"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Visual and performance improvements to scrolling the player's track list",
+            "Smoother playback when the song filter skips songs",
+            "More predictable pinch and press gestures on your discboards",
+            "A roomier mini player at the largest text sizes",
+            "Improvements to editing discboards on iPad",
+            "More accurate Spotlight results for your discboards",
+            "Stability improvements"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Thanks for listening — keep the feedback coming."
+        }
+      ]
+    },
+    {
+      "version": "2.0",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Discboard 2.0 is here: a fresh new look, a much faster Discboard, and your boards on Apple Watch."
+        },
+        {
+          "type": "h",
+          "text": "A fresh new look"
+        },
+        {
+          "type": "p",
+          "text": "Discboard has a new app icon — a capital D built from a wall of album covers, with a shining disc at its center — and a new violet accent throughout the app. The Now Playing sheet sits on tinted glass that follows light and dark mode. On iPhone and iPad, a board's buttons live in a standard toolbar at the top of the screen, and its name sits in a glass capsule of its own; tap it to rename the board. Covers stay clear of the status bar, the toolbar and the home indicator. On iPad and Mac, the wallpaper runs the full width of the window, behind your list of discboards."
+        },
+        {
+          "type": "h",
+          "text": "Much faster"
+        },
+        {
+          "type": "p",
+          "text": "Your discboards are drawn by a brand-new graphics engine. Covers, shine and shadows look just as they did, while panning, zooming and rearranging are smoother, most of all on boards with many covers. Albums start playing sooner, and tapping another song from the album that's playing jumps straight to it."
+        },
+        {
+          "type": "h",
+          "text": "Discboard on Apple Watch"
+        },
+        {
+          "type": "p",
+          "text": "Your discboards appear on your watch as crates. Turn the Digital Crown to flip through a board's covers, and tap one to play it on your iPhone. Press and hold a cover to play it or shuffle it. While music plays, the watch shows what's on: turn the Digital Crown to change the volume, press and hold to rate or favorite the song, and open the queue to jump to another track. Add Discboard to the Smart Stack or a watch face for a one-tap Surprise Me."
+        },
+        {
+          "type": "h",
+          "text": "Also in 2.0"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "A new Surprise Me widget for your Home Screen and your Mac's desktop shows one of your discboards; tap it and Discboard plays a random album from that board",
+            "Albums from another country's store are matched to your own store's version, so more of them play",
+            "Covers you make bigger stay sharp, and a cover whose art is missing keeps looking for it",
+            "The layer slider appears beside the cover you selected and follows it as you move around the board",
+            "Toolbar buttons that don't fit move into the \"…\" menu under their proper names, and Done no longer goes missing while you edit on iPhone",
+            "The small status messages at the top of the screen hold still as they come and go",
+            "A board dragged past its edge always springs back",
+            "The full-screen player is easier to read in dark mode",
+            "Fixes for crashes that could strike in the app's first moments when the system opened it in the background"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Thanks for listening — keep the feedback coming."
+        }
+      ]
+    },
+    {
+      "version": "1.3.1",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "New ways to order and size your boards, Add to Library for any album, and a faster Discboard all around."
+        },
+        {
+          "type": "p",
+          "text": "Order a board by release date, oldest first — in Arrange, and in the List and Grid views' Order By. Albums remember when they came out, whether you add them from Apple Music, share or paste them in, or drag them from the Music app, and albums already on your discboards pick up their dates when you open them."
+        },
+        {
+          "type": "p",
+          "text": "Size every cover at once from the Arrange menu. Size by Duration makes longer albums bigger, and Size by Favorite/Rating makes the albums you've starred and loved the most stand out. If you've resized covers yourself, Discboard asks before replacing your sizing."
+        },
+        {
+          "type": "p",
+          "text": "On iPhone and iPad, long-press an album and choose Add to Library to bring its songs into your Apple Music library — handy for the albums on the starter discboards. And albums on your discboards that never made it into your library are now added for you, including ones placed on a Mac, so the stars you give their songs have somewhere to live in Music."
+        },
+        {
+          "type": "p",
+          "text": "Discboards published on byteshire.com now open straight in Discboard with one tap on their link."
+        },
+        {
+          "type": "p",
+          "text": "Discboard is quicker everywhere. Pause, resume, favorites, and star ratings respond the instant you tap them. Albums you've opened before show their tracks right away. Adding albums — one or many — is faster, switching between discboards is smoother, and the app stays responsive while it starts up, backs up and restores your boards, opens a board someone shared with you, and catches up with iCloud. A discboard left sitting still also draws less power."
+        },
+        {
+          "type": "p",
+          "text": "On CarPlay, the favorite and star-rating buttons now keep up with the song that's playing, even when tracks change while your phone is locked. On Mac, saving a board animation opens a Save dialog and puts the video straight into your files. We also fixed crashes that could strike in the app's first moments when the system opened it in the background, and the scroll bar in your list of discboards now sits at the edge of the list."
+        },
+        {
+          "type": "p",
+          "text": "Thanks for listening — keep the feedback coming."
+        }
+      ]
+    },
+    {
+      "version": "1.3",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Discboard comes along for the drive, and every board can now be seen as a list or a grid."
+        },
+        {
+          "type": "p",
+          "text": "Discboard is on CarPlay. Browse your discboards from the car — folders and all, in the same order as on your iPhone, each board wearing its thumbnail and each album its cover — and tap one to play. The Now Playing screen carries a full set of Discboard controls: favorite the playing track, set its star rating, tune the playback filter, and open Up Next to see the album's tracks, each with its heart and stars, and jump straight to any of them."
+        },
+        {
+          "type": "p",
+          "text": "See any board as a list or a grid. A toolbar menu switches between the classic Discboard view, a scrolling list, and a grid of covers, so even a crowded board is easy to scan — and tapping an album plays it in every view. Choose how they're ordered, too: by how they're stacked on the board, by album, by artist, or by artist and year. Each discboard remembers its own choice on all your devices, and CarPlay follows it, with an Order By button in the car to change it from there."
+        },
+        {
+          "type": "p",
+          "text": "The list has an Edit button of its own. Remove an album with a tap, or — while ordering by stacking order — drag rows by their handle to restack the board itself."
+        },
+        {
+          "type": "p",
+          "text": "Everywhere Discboard asks you to pick a board — the Move To… menu on a cover, the Discboards list in the Mac menu bar, the picker you get when you send an album over from Apple Music — your folders now appear nested, in the same order as your discboards list. And in the player, the star-rating and favorites controls now respond even while the playback filter is switched off: tapping one turns the filter on for you, so choosing a threshold takes one tap instead of two."
+        },
+        {
+          "type": "p",
+          "text": "We also fixed a handful of crashes — deleting the board you were looking at, and a few that could strike in the app's first moments when the system opened it in the background."
+        },
+        {
+          "type": "p",
+          "text": "Thanks for listening — keep the feedback coming."
+        }
+      ]
+    },
+    {
+      "version": "1.2",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Folders for your discboards, boards you can share as animations, and a smoother ride all around."
+        },
+        {
+          "type": "p",
+          "text": "You can now group your discboards into folders — and tuck folders inside folders. Drag a board onto a folder to file it, or use Move to Folder, which now mirrors your hierarchy and can create a new folder on the spot. The + button offers New Discboard and New Folder, joined by ⌘N and ⇧⌘N in the File menu on Mac and iPad. Creating folders is part of Discboard Premium."
+        },
+        {
+          "type": "p",
+          "text": "Share a board as an animation. The Showcase style gives every album its own moment — each cover spins in, holds the frame, then slams into place — while the Appear style sweeps the whole board full in seconds. Pick the pace and the order, watch a live preview, and share it wide, or tall for phone-sized video. Prefer a still? Share any board as a high-resolution image. Either way, your covers keep their jewel-case shine."
+        },
+        {
+          "type": "p",
+          "text": "Boards got more personal too. Drag an image from Photos, Files, or Finder onto a board to make it the wallpaper — or onto the discboards list to start a new board already wearing it. And each board now keeps its own Arrange spacing, so the margins and the gap between covers can suit its backdrop."
+        },
+        {
+          "type": "p",
+          "text": "Pressing play from your headphones, the lock screen, Control Center, Siri, or your car now reaches Discboard and picks up where you left off. On Mac, the player is now its own free-floating, resizable window. On iPhone, the app reopens wherever you left it, and a board's editing controls fan out along the side of the screen."
+        },
+        {
+          "type": "p",
+          "text": "Backups now carry more of your library — your folders, your imported wallpapers, and each board's arrange settings all travel with the file. And there's polish throughout: smoother dragging and reordering in the discboards list, tidier rows, and fixes for boards that wouldn't open on iPhone and a rare crash on Mac."
+        },
+        {
+          "type": "p",
+          "text": "Thanks for listening — keep the feedback coming."
+        }
+      ]
+    },
+    {
+      "version": "1.1.2",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A roomier player, fresh ways to fill a board, and a smoother ride."
+        },
+        {
+          "type": "p",
+          "text": "The full-screen player has room to breathe. When it fills the window it now runs right to the edges for a more immersive look, while the cover and controls stay clear of the status bar, notch, and Dynamic Island. Opening, closing, and resizing it feels smoother, and it's easier on the battery — the board behind it rests while it's out of sight."
+        },
+        {
+          "type": "p",
+          "text": "You can now drag albums straight in from Apple Music — one at a time, a handful at once, or a whole playlist to start a new board from its albums. On Mac, you can also copy an album in Apple Music and paste it right onto a board. And when a board starts to feel crowded, Arrange tidies every cover into a neat grid in a single tap — by title, by artist, or by artist and year."
+        },
+        {
+          "type": "p",
+          "text": "We also spent time on the details. Album covers and wallpapers show up reliably the moment you open the app, and tapping a track by name is as dependable as the play button. Pull down on your boards to sync with iCloud whenever you like, and we smoothed over a couple of rare freezes and a crash along the way."
+        },
+        {
+          "type": "p",
+          "text": "Thanks for listening — keep the feedback coming."
+        }
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A couple of fixes for smoother listening."
+        },
+        {
+          "type": "p",
+          "text": "We fixed a hiccup where the player could get stuck on an earlier song — showing the wrong track and a frozen progress bar — while your music kept playing. It now stays in step with whatever's actually playing."
+        },
+        {
+          "type": "p",
+          "text": "We also smoothed out the progress bar when the song changes: it jumps cleanly to the start of the next track instead of briefly sliding backward."
+        },
+        {
+          "type": "p",
+          "text": "Thanks for listening — keep the feedback coming."
+        }
+      ]
+    },
+    {
+      "version": "1.1",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A player that fits, a window that bends, and two more languages."
+        },
+        {
+          "type": "p",
+          "text": "The now-playing player now sizes itself to the space it has — one column when things are tight, and two side by side, with the track list next to the cover, when there's room to spread out. Nothing to switch; it just settles into whatever fits."
+        },
+        {
+          "type": "p",
+          "text": "On Mac and iPad, you can now resize the window however you like — pull it right down to a small, tidy size and the sidebar steps out of the way on its own, so a little Discboard window is as easy to use as a big one."
+        },
+        {
+          "type": "p",
+          "text": "Discboard now speaks Welsh and Finnish too, bringing it to 13 languages — it follows whatever language your device is set to."
+        },
+        {
+          "type": "p",
+          "text": "And on Mac and iPad, new keyboard shortcuts let you play, pause, and skip right from the keyboard."
+        },
+        {
+          "type": "p",
+          "text": "Your boards, arrangements, wallpapers, and ratings keep syncing across iPhone, iPad, and Mac through iCloud, same as always."
+        },
+        {
+          "type": "p",
+          "text": "Thanks for listening — we'd love to hear what you think."
+        }
+      ]
+    },
+    {
+      "version": "1.0",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The first version of Discboard."
+        },
+        {
+          "type": "p",
+          "text": "Put on an album and sit with it. Lay your covers out on a discboard — drag, pinch, and turn each one into place — then tap a cover to flip its jewel case open and play any track through Apple Music."
+        },
+        {
+          "type": "p",
+          "text": "Bring in your own wallpapers from Photos or Files, and keep your boards, arrangements, and ratings in sync across iPhone, iPad, and Mac through iCloud."
+        },
+        {
+          "type": "p",
+          "text": "Made a board you love? Share it — send any discboard as a file, and whoever you send it to can open it in Discboard to add their own copy, with the cover art filled in from their own library."
+        },
+        {
+          "type": "p",
+          "text": "Discboard is free to use; Discboard Premium unlocks unlimited boards and covers, with a 7-day free trial."
+        },
+        {
+          "type": "p",
+          "text": "This is the first release — we'd love to hear what you think."
+        }
+      ]
+    }
+  ]
+}

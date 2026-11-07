@@ -1,0 +1,30 @@
+---
+// Every App Store version an app has shipped, newest first, with its What's New
+// text exactly as the App Store showed it. Imported by scripts/import-app.py.
+import Base from "../../../layouts/Base.astro";
+import Blocks from "../../../components/Blocks.astro";
+import { appsWithPages, longDate } from "../../../lib/app-pages";
+
+export async function getStaticPaths() {
+  return (await appsWithPages()).map(({ app, releases }) => ({ params: { app: app.id }, props: { app, releases } }));
+}
+
+const { app, releases } = Astro.props;
+const name = app.data.name;
+---
+<Base title={`What’s New in ${name}`} description={`Every version of ${name}, and what each one brought.`} app={app}>
+  <link rel="alternate" type="application/rss+xml" title={`${name} — What’s New`} href={`/${app.id}/whats-new/rss.xml`} slot="head" />
+  <div class="wrap">
+    <header class="page-intro">
+      <h1>What’s New</h1>
+      <p>Every version of {name} on the App Store, newest first. <a href={`/${app.id}/whats-new/rss.xml`}>Follow by RSS</a>.</p>
+    </header>
+    {releases.versions.map((release) => (
+      <article class="release" id={`v${release.version}`}>
+        <h2>Version {release.version}</h2>
+        {release.date && <p class="release-date">Released {longDate(release.date)}</p>}
+        <Blocks blocks={release.blocks} />
+      </article>
+    ))}
+  </div>
+</Base>

@@ -1,0 +1,46 @@
+---
+// An app's support page: the App Store listing's Support URL. It says only what
+// the listing and the legal pages already say; questions and answers belong in
+// the app's data once the user writes them.
+import Base from "../../../layouts/Base.astro";
+import { appsWithPages } from "../../../lib/app-pages";
+import { platformList } from "../../../lib/listing";
+
+export async function getStaticPaths() {
+  return (await appsWithPages()).map(({ app, releases }) => ({ params: { app: app.id }, props: { app, releases } }));
+}
+
+const { app, releases } = Astro.props;
+const { name, supportEmail, subscription, platforms } = app.data;
+const subject = encodeURIComponent(`${name} support`);
+---
+<Base title={`${name} Support`} description={`How to get help with ${name}.`} app={app}>
+  <div class="wrap">
+    <header class="page-intro">
+      <h1>Support</h1>
+      <p>Questions, bug reports and ideas for {name} are all welcome.</p>
+    </header>
+
+    <section class="support-card">
+      <h2>Get in touch</h2>
+      <p>Email <a href={`mailto:${supportEmail}?subject=${subject}`}>{supportEmail}</a>. It helps to say which device you’re using and which version of {name} you have — the current version is {releases.liveVersion}.</p>
+    </section>
+
+    <section class="support-card">
+      <h2>What it runs on</h2>
+      <p>{name} is for {platformList(platforms)}. See <a href={`/${app.id}/whats-new/`}>What’s New</a> for what each version changed.</p>
+    </section>
+
+    {subscription && (
+      <section class="support-card">
+        <h2>Managing your subscription</h2>
+        <p>Subscriptions are handled by Apple. To change or cancel one, open your App Store account settings, or follow Apple’s guide, <a href="https://support.apple.com/en-us/118428">Cancel a subscription from Apple</a>. Cancel at least 24 hours before the end of the current period to avoid the next charge.</p>
+      </section>
+    )}
+
+    <section class="support-card">
+      <h2>Your privacy</h2>
+      <p>Read the <a href={`/${app.id}-privacy/`}>{name} Privacy Policy</a> and the <a href={`/${app.id}-terms/`}>Terms of Use</a>.</p>
+    </section>
+  </div>
+</Base>

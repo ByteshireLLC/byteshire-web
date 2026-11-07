@@ -12,6 +12,9 @@
 
 / page
 /discboard/ page
+/discboard/support/ page
+/discboard/whats-new/ page
+/discboard/whats-new/rss.xml file
 /discboard-privacy/ page
 /discboard-terms/ page
 /cirth-privacy/ page

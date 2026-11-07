@@ -15,7 +15,17 @@ Each app is described once, in `src/content/apps/<slug>.yaml`, and every page ab
 | `/discboards/<slug>/` | `discboards/<slug>/index.html` front matter, rendered by `src/pages/discboards/[slug]/index.astro` — promo boards |
 | `/b/<slug>/` | `b/<slug>/index.html` front matter — the old board URLs, forwarding to `/discboards/<slug>/` |
 
-Brand colors, type and sizes live in `src/styles/tokens.css`, as Tailwind v4 `@theme` tokens.
+Brand colors, type and sizes live in `src/styles/tokens.css`, as Tailwind v4 `@theme` tokens. An app with a `brand` in its data file dresses every page under it in its own colors and typeface; studio pages stay neutral.
+
+An app with `landingPage: true` and an imported release history also gets `/<app>/whats-new/` (with an RSS feed at `rss.xml`) and `/<app>/support/`, from `src/pages/[app]/`.
+
+## Importing an app's copy and art
+
+```sh
+scripts/import-app.py discboard
+```
+
+This reads the app's `MARKETING.md` and Koubou screenshots from its sibling repos (locations in `scripts/app-sources.json`) and writes `src/content/listings/<app>.json`, `src/content/releases/<app>.json`, `src/assets/apps/<app>/` and `public/fonts/<app>/`. Those files are generated: change the copy in the app's repo and import again, never edit them here. A What's New block is public once `MARKETING.md` marks it shipped, or once Apple's lookup endpoint reports its version live. Run it after each App Store release, then build and commit.
 
 ## The URLs are load-bearing — do not break them
 

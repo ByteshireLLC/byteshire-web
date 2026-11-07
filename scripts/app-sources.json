@@ -1,0 +1,20 @@
+{
+  "_comment": "Where scripts/import-app.py finds each app's copy and art. Paths are relative to ~/Source. Screenshot folders are Koubou output folders in the app's -assets worktree, shown in this order.",
+  "discboard": {
+    "repo": "Discboard",
+    "assets": "Discboard-assets",
+    "appStoreId": "6768056000",
+    "icon": "Brand/Discboard-avatar-1024.png",
+    "ogImage": "Brand/Discboard-creative-header-2.0.png",
+    "font": {
+      "family": "Fredoka",
+      "file": "AppStore/templates/fonts/Fredoka-Variable.ttf",
+      "license": "AppStore/templates/fonts/Fredoka-OFL.txt"
+    },
+    "screenshots": {
+      "iPhone": "AppStore/output/iPhone_17_Pro_Max_-_Deep_Blue_-_Portrait",
+      "iPad": "AppStore/output/iPad_Pro_13_-_M4_-_Space_Gray_-_Landscape",
+      "Mac": "AppStore/output/MacBook_Pro_M4_16-inch_Silver"
+    }
+  }
+}

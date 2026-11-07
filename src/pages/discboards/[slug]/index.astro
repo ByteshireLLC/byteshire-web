@@ -31,6 +31,7 @@ const pageURL = new URL(Astro.url.pathname, Astro.site);
 <Base
   title={title}
   description={description}
+  app={app}
   smartAppBanner={{ appId: app.data.appStore!.id, argument: new URL(`/b/${slug}`, Astro.site).toString() }}
   ogImage={new URL("wallpaper.jpg", pageURL).toString()}
 >
