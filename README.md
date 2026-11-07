@@ -9,7 +9,7 @@ Each app is described once, in `src/content/apps/<slug>.yaml`, and every page ab
 | URL | Source |
 | --- | --- |
 | `/` | `src/pages/index.astro` — Byteshire home, one card per app with `summary` and `landingPage: true` |
-| `/discboard/` | `src/pages/discboard/index.astro` — Discboard landing page |
+| `/discboard/` | `src/pages/discboard/index.astro` — Discboard's landing page. Every app's landing page is its own design; see `SPEC.md` |
 | `/<app>-privacy/`, `/<app>-terms/` | `src/content/legal/<app>-<kind>.md`, rendered by `src/pages/[page].astro` |
 | `/<app>/<channel>/` | the app's `shortLinks`, rendered by `src/pages/[app]/[channel].astro` — campaign short links (see below) |
 | `/discboards/<slug>/` | `discboards/<slug>/index.html` front matter, rendered by `src/pages/discboards/[slug]/index.astro` — promo boards |
@@ -25,7 +25,7 @@ An app with `landingPage: true` and an imported release history also gets `/<app
 scripts/import-app.py discboard
 ```
 
-This reads the app's `MARKETING.md` and Koubou screenshots from its sibling repos (locations in `scripts/app-sources.json`) and writes `src/content/listings/<app>.json`, `src/content/releases/<app>.json`, `src/assets/apps/<app>/` and `public/fonts/<app>/`. Those files are generated: change the copy in the app's repo and import again, never edit them here. A What's New block is public once `MARKETING.md` marks it shipped, or once Apple's lookup endpoint reports its version live. Run it after each App Store release, then build and commit.
+This reads the app's `MARKETING.md`, its raw app captures and the art its landing page plays with from its sibling repos (locations in `scripts/app-sources.json`). It writes `src/content/listings/<app>.json`, `src/content/releases/<app>.json`, `src/assets/apps/<app>/` and `public/fonts/<app>/`, plus Apple's device bezels from Koubou's frame cache into `src/assets/frames/`, where `src/components/Device.astro` shows captures inside them. Those files are generated: change the copy in the app's repo and import again, never edit them here. A What's New block is public once `MARKETING.md` marks it shipped, or once Apple's lookup endpoint reports its version live. Run it after each App Store release, then build and commit.
 
 ## The URLs are load-bearing — do not break them
 

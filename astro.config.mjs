@@ -16,7 +16,9 @@ export default defineConfig({
   integrations: [
     sitemap({
       // Short links and the legacy /b/ forwarding pages are redirects, not pages.
-      filter: (page) => !/\/(discboard\/[a-z]+|b\/[^/]+)\/$/.test(page),
+      // An app's own pages under /<app>/ use the names the schema reserves from
+      // short links (support, whats-new), so those stay in.
+      filter: (page) => !/\/(discboard\/(?!support\/|whats-new\/)[a-z]+|b\/[^/]+)\/$/.test(page),
     }),
     passthrough(),
   ],

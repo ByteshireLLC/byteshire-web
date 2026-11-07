@@ -3,13 +3,18 @@
 
 Usage: scripts/import-app.py <slug> [--source-root ~/Source]
 
-Reads the app's MARKETING.md and Koubou screenshots (locations in
+Reads the app's MARKETING.md, its raw app captures and art (locations in
 scripts/app-sources.json) and writes:
 
     src/content/listings/<slug>.json   subtitle, promotional text, description blocks
     src/content/releases/<slug>.json   shipped App Store versions and their What's New
-    src/assets/apps/<slug>/            icon, link-preview image, screenshots (resized)
+    src/assets/apps/<slug>/            icon, link-preview image, captures/, props/
+    src/assets/frames/                 Apple device bezels, from Koubou's frame cache
     public/fonts/<slug>/               the app's brand typeface and its license
+
+The captures are the app's own screenshots before Koubou frames and captions
+them for the App Store; the landing page shows them in Apple's bezels instead
+(SPEC › Principles › "A landing page does what the App Store can't").
 
 Everything it writes is generated: change the source in the app's repo and run
 this again, never edit the output by hand (SPEC › Principles). It runs on the
@@ -175,16 +180,34 @@ def main():
     else:
         resize(assets / config["icon"], art / "icon.jpg", 512)
     resize(assets / config["ogImage"], art / "og.jpg", 1600)
-    count = 0
-    for device, folder in config["screenshots"].items():
-        shots = sorted((assets / folder).glob("[0-9][0-9]_*.png"))
-        if not shots:
-            fail(f"no numbered screenshots in {assets / folder}")
-        longest = 1400
-        for shot in shots:
-            resize(shot, art / "screens" / device / f"{shot.stem}.jpg", longest)
-            count += 1
-    print(f"wrote {count} screenshots, the icon and the link-preview image to {art.relative_to(SITE)}")
+    for name, relative in config.get("captures", {}).items():
+        resize(assets / relative, art / "captures" / f"{name}.jpg", 1400)
+    print(f"wrote {len(config.get('captures', {}))} captures to {(art / 'captures').relative_to(SITE)}")
+    for group, patterns in config.get("props", {}).items():
+        if group.startswith("_"):
+            continue
+        files = [f for pattern in patterns for f in sorted(assets.glob(pattern))]
+        if not files:
+            fail(f"props.{group} matched no files")
+        for index, source in enumerate(files, start=1):
+            resize(source, art / "props" / group / f"{index:02d}.jpg", 512)
+        print(f"wrote {len(files)} {group} to {(art / 'props' / group).relative_to(SITE)}")
+
+    # Apple's product bezels, kept as PNG for the transparent screen. Shared by
+    # every app, so they sit outside the app's folder.
+    caches = sorted((Path.home() / ".koubou/frames").glob("*/"))
+    if config.get("frames") and not caches:
+        fail("no Koubou frame cache in ~/.koubou/frames — run any kou render once to download it")
+    for name in config.get("frames", []):
+        source = caches[-1] / f"{name}.png"
+        if not source.exists():
+            fail(f"frame {source} not found")
+        target = SITE / "src/assets/frames" / (re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-") + ".png")
+        target.parent.mkdir(parents=True, exist_ok=True)
+        result = subprocess.run(["sips", "-Z", "1600", str(source), "--out", str(target)], capture_output=True, text=True)
+        if result.returncode != 0:
+            fail(f"sips could not resize {source}: {result.stderr.strip()}")
+    print(f"wrote {len(config.get('frames', []))} device frames to src/assets/frames")
 
     fonts = SITE / "public/fonts" / args.slug
     fonts.mkdir(parents=True, exist_ok=True)

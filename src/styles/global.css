@@ -156,8 +156,7 @@ a { color: var(--color-accent); }
   background: linear-gradient(180deg, var(--brand-bg-top) 0, var(--brand-bg-bottom) 900px) var(--brand-bg-bottom);
   background-repeat: no-repeat;
 }
-.branded h1, .branded h2, .branded h3, .branded .brand, .branded .site-nav, .branded .button,
-.branded .eyebrow, .branded .device-tabs label {
+.branded h1, .branded h2, .branded h3, .branded .brand, .branded .site-nav, .branded .button {
   font-family: var(--brand-font, var(--font-sans));
 }
 .branded h1, .branded h2 { font-weight: 600; letter-spacing: -0.01em; }
@@ -168,12 +167,7 @@ a { color: var(--color-accent); }
 .branded .button { background: var(--brand-button); color: #fff; }
 .branded .button-secondary { background: transparent; color: var(--brand-accent); box-shadow: inset 0 0 0 1.5px var(--brand-accent); }
 
-/* Landing page */
-.app-hero { padding: 56px 0 8px; text-align: center; }
-.app-icon { width: 112px; height: 112px; border-radius: 25px; box-shadow: 0 12px 40px rgb(0 0 0 / 0.45); }
-.app-hero h1 { font-size: 3.6rem; line-height: 1.05; margin: 20px 0 6px; }
-.app-hero .tagline { font-size: 1.6rem; font-weight: 500; font-family: var(--brand-font, var(--font-sans)); margin: 0 0 10px; }
-.app-hero .platforms { color: var(--color-muted); margin: 0 0 24px; }
+/* Pieces an app's landing page can use */
 .store-badge { display: inline-block; line-height: 0; }
 .store-badge img { height: 54px; width: auto; }
 .version-chip {
@@ -181,40 +175,6 @@ a { color: var(--color-accent); }
   background: var(--color-surface); color: var(--color-text); text-decoration: none; font-size: 0.95rem;
 }
 .version-chip strong { color: var(--brand-highlight); font-weight: 600; }
-
-.gallery { padding: 32px 0 8px; }
-.device-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 18px; }
-.device-tabs input { position: absolute; opacity: 0; pointer-events: none; }
-.device-tabs label {
-  padding: 6px 16px; border-radius: 999px; cursor: pointer; color: var(--color-muted);
-  box-shadow: inset 0 0 0 1px var(--color-border);
-}
-.device-tabs input:checked + label { background: var(--brand-button); color: #fff; box-shadow: none; }
-.device-tabs input:focus-visible + label { outline: 2px solid var(--brand-accent); outline-offset: 2px; }
-.shots { display: none; }
-.shots-row {
-  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
-  padding: 4px max(20px, calc((100vw - 1100px) / 2)) 16px; scrollbar-width: thin;
-}
-.shots-row img { scroll-snap-align: center; flex: none; border-radius: 18px; height: auto; }
-.shots-iPhone img { width: min(300px, 72vw); }
-.shots-iPad img, .shots-Mac img { width: min(620px, 86vw); }
-.gallery:has(#device-iPhone:checked) .shots-iPhone,
-.gallery:has(#device-iPad:checked) .shots-iPad,
-.gallery:has(#device-Mac:checked) .shots-Mac { display: block; }
-
-.app-story { max-width: 640px; margin: 0 auto; padding: 40px 20px 8px; font-size: 1.15rem; }
-.app-story p:first-child { font-size: 1.3rem; }
-
-.feature-grid {
-  max-width: 1100px; margin: 0 auto; padding: 32px 20px;
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;
-  list-style: none;
-}
-.feature-grid li { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-card); padding: 20px 22px; }
-.feature-grid h3 { margin: 0 0 6px; font-size: 1.15rem; }
-.feature-grid p { margin: 0; color: var(--color-muted); font-size: 1rem; }
-.section-title { text-align: center; font-size: 2rem; margin: 48px 0 0; }
 
 .plans { padding: 16px 0 0; }
 .plans .plan-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-card); padding: 8px 28px 20px; }
@@ -228,11 +188,6 @@ a { color: var(--color-accent); }
 .page-intro h1 { font-size: 2.6rem; margin: 0 0 8px; }
 .page-intro p { color: var(--color-muted); margin: 0; }
 .support-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-card); padding: 4px 24px 12px; margin-top: 24px; }
-
-@media (max-width: 640px) {
-  .app-hero h1 { font-size: 2.6rem; }
-  .app-hero .tagline { font-size: 1.3rem; }
-}
 
 .branded .brand { white-space: nowrap; }
 .site-nav { white-space: nowrap; }

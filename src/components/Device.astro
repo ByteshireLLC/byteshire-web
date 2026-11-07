@@ -1,0 +1,62 @@
+---
+// A real app capture inside Apple's own product bezel, the way Apple's marketing
+// guidelines ask for: the bezel unaltered, never tilted, shadowed or covered by
+// copy (SPEC › Principles). The capture sits under the bezel's transparent screen.
+// Screen rectangles are in the bezel's original pixels, from Koubou's Frames.json;
+// scripts/import-app.py copies the bezels into src/assets/frames/.
+import { Image } from "astro:assets";
+import iphoneFrame from "../assets/frames/iphone-17-pro-deep-blue-portrait.png";
+import ipadFrame from "../assets/frames/ipad-pro-13-m4-space-gray-landscape.png";
+
+const frames = {
+  iphone: { image: iphoneFrame, w: 1350, h: 2760, x: 72, y: 69, sw: 1206, sh: 2622, radius: 150 },
+  ipad: { image: ipadFrame, w: 3000, h: 2300, x: 134, y: 126, sw: 2732, sh: 2048, radius: 50 },
+} as const;
+
+interface Props {
+  kind?: keyof typeof frames;
+  // One capture, or several stacked for a crossfade (data-screen index).
+  screens: ImageMetadata[];
+  alt: string;
+  // How wide the device shows, for choosing image sizes.
+  sizes: string;
+  class?: string;
+  eager?: boolean;
+}
+const { kind = "iphone", screens, alt, sizes, class: className = "", eager = false } = Astro.props;
+const f = frames[kind];
+const pct = (n: number, d: number) => `${((n / d) * 100).toFixed(4)}%`;
+// The screen's rounded corners, so a capture never shows past the bezel at small sizes.
+const corner = `${pct(f.radius, f.sw)} / ${pct(f.radius, f.sh)}`;
+const screenStyle = `left:${pct(f.x, f.w)};top:${pct(f.y, f.h)};width:${pct(f.sw, f.w)};height:${pct(f.sh, f.h)};border-radius:${corner}`;
+const widths = kind === "iphone" ? [320, 640, 960] : [640, 1280];
+const loading = eager ? "eager" : "lazy";
+---
+<figure class:list={["device", `device-${kind}`, className]} style={`aspect-ratio:${f.w}/${f.h}`}>
+  <div class="device-screen" style={screenStyle}>
+    {screens.map((screen, index) => (
+      <Image
+        src={screen}
+        widths={widths}
+        sizes={sizes}
+        alt={index === 0 ? alt : ""}
+        data-screen={index}
+        class:list={[{ active: index === 0 }]}
+        loading={loading}
+      />
+    ))}
+  </div>
+  <Image class="device-frame" src={f.image} widths={widths} sizes={sizes} alt="" loading={loading} />
+</figure>
+
+<style>
+  .device { position: relative; margin: 0; }
+  .device-screen { position: absolute; overflow: hidden; background: #000; }
+  .device-screen img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    opacity: 0; transition: opacity 0.6s ease;
+  }
+  .device-screen img.active { opacity: 1; }
+  .device-frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  @media (prefers-reduced-motion: reduce) { .device-screen img { transition: none; } }
+</style>

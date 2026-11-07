@@ -1,5 +1,5 @@
 {
-  "_comment": "Where scripts/import-app.py finds each app's copy and art. Paths are relative to ~/Source. Screenshot folders are Koubou output folders in the app's -assets worktree, shown in this order.",
+  "_comment": "Where scripts/import-app.py finds each app's copy and art. Paths are relative to the app's -assets worktree under ~/Source unless noted. captures: raw app screenshots (no Koubou framing), named for the page that uses them. props: art a landing page plays with, as glob patterns, numbered in order. frames: Apple device bezels from Koubou's frame cache, shared by every app.",
   "discboard": {
     "repo": "Discboard",
     "assets": "Discboard-assets",
@@ -11,10 +11,23 @@
       "file": "AppStore/templates/fonts/Fredoka-Variable.ttf",
       "license": "AppStore/templates/fonts/Fredoka-OFL.txt"
     },
-    "screenshots": {
-      "iPhone": "AppStore/output/iPhone_17_Pro_Max_-_Deep_Blue_-_Portrait",
-      "iPad": "AppStore/output/iPad_Pro_13_-_M4_-_Space_Gray_-_Landscape",
-      "Mac": "AppStore/output/MacBook_Pro_M4_16-inch_Silver"
-    }
+    "captures": {
+      "iphone-gravity": "Screenshots/iPhone_01_Gravity_Dark.png",
+      "iphone-neon-bloom": "Screenshots/iPhone_03_NeonBloom_Dark.png",
+      "iphone-quiet-hours": "Screenshots/iPhone_04_QuietHours_Dark.png",
+      "iphone-road-trip": "Screenshots/iPhone_06_RoadTrip_Dark.png",
+      "ipad-gravity": "Screenshots/iPad_01_Gravity_Dark.png"
+    },
+    "props": {
+      "_comment": "Public-domain paintings Discboard's screenshots use as fake album covers (AppStore/templates/covers/SOURCES.md). The Crate Dig set (m5wtuy) is left out: it holds the Botticelli nude, kept out of marketing for a 4+ rating.",
+      "covers": [
+        "AppStore/templates/covers/FakeAlbum_pikxr9*.png",
+        "AppStore/templates/covers/FakeAlbum_yhjoth*.png"
+      ]
+    },
+    "frames": [
+      "iPhone 17 Pro - Deep Blue - Portrait",
+      "iPad Pro 13 - M4 - Space Gray - Landscape"
+    ]
   }
 }
