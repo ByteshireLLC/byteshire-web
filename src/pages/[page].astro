@@ -1,0 +1,34 @@
+---
+// Every app's privacy policy and terms of use, at /<app>-<kind>/.
+// These URLs are load-bearing: see SPEC › Load-bearing URLs.
+import { getCollection, getEntry, render } from "astro:content";
+import Base from "../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("legal");
+  return pages.map((page) => ({
+    params: { page: `${page.data.app.id}-${page.data.kind}` },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const app = (await getEntry(page.data.app))!;
+const { Content } = await render(page);
+
+const longDate = (date: Date) =>
+  date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+---
+<Base title={page.data.title} description={page.data.description}>
+  <article class="legal wrap">
+    <h1>{page.data.title}</h1>
+    <p class="legal-meta">
+      <strong>Effective date:</strong> {longDate(page.data.effective)}
+      {page.data.updated && (<><br /><strong>Last updated:</strong> {longDate(page.data.updated)}</>)}
+    </p>
+    <Content />
+    {app.data.landingPage && (
+      <p class="legal-back"><a href={`/${app.id}/`}>← Back to {app.data.name}</a></p>
+    )}
+  </article>
+</Base>

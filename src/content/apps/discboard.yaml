@@ -1,0 +1,14 @@
+name: Discboard
+status: live
+platforms: [iPhone, iPad, Mac]
+summary: Lay your album covers out on a board, arrange them however you like, and play any track through Apple Music. For iPhone, iPad, and Mac.
+landingPage: true
+appStore:
+  id: "6768056000"
+  providerToken: "128711249"
+shortLinks:
+  tiktok: bio-tiktok
+  instagram: bio-instagram
+  youtube: 1.3-carplay-youtube
+  bluesky: 1.3-carplay-bluesky
+  reddit: 1.3-carplay-reddit

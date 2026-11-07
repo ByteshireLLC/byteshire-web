@@ -1,42 +1,55 @@
 # byteshire-web
 
-The static website for [byteshire.com](https://byteshire.com) and the Discboard product pages. Built with Jekyll and served by GitHub Pages — no build step or GitHub Action to maintain, because GitHub Pages compiles Jekyll natively on every push.
+The static website for [byteshire.com](https://byteshire.com). Built with [Astro](https://astro.build) and published to GitHub Pages by a GitHub Action on every push to `main`. `SPEC.md` says who the site is for and the principles behind it.
 
-## Pages
+## How it's put together
 
-| URL | Source file |
+Each app is described once, in `src/content/apps/<slug>.yaml`, and every page about it is generated from that file. `src/content.config.ts` defines the schema; a missing or misspelled field fails the build rather than publishing a broken page.
+
+| URL | Source |
 | --- | --- |
-| `/` | `index.html` — Byteshire home |
-| `/discboard/` | `discboard.html` — Discboard landing page |
-| `/discboard-privacy/` | `discboard-privacy.md` — Discboard privacy policy |
-| `/discboard-terms/` | `discboard-terms.md` — Discboard terms of use |
-| `/discboard/tiktok/`, `/discboard/instagram/`, `/discboard/youtube/`, `/discboard/bluesky/`, `/discboard/reddit/` | `discboard/<channel>.md` — short links that forward to the App Store with a campaign token (see below) |
+| `/` | `src/pages/index.astro` — Byteshire home, one card per app with `summary` and `landingPage: true` |
+| `/discboard/` | `src/pages/discboard/index.astro` — Discboard landing page |
+| `/<app>-privacy/`, `/<app>-terms/` | `src/content/legal/<app>-<kind>.md`, rendered by `src/pages/[page].astro` |
+| `/<app>/<channel>/` | the app's `shortLinks`, rendered by `src/pages/[app]/[channel].astro` — campaign short links (see below) |
+| `/discboards/<slug>/` | `discboards/<slug>/index.html` front matter, rendered by `src/pages/discboards/[slug]/index.astro` — promo boards |
+| `/b/<slug>/` | `b/<slug>/index.html` front matter — the old board URLs, forwarding to `/discboards/<slug>/` |
 
-## The legal URLs are load-bearing — do not break them
+Brand colors, type and sizes live in `src/styles/tokens.css`, as Tailwind v4 `@theme` tokens.
 
-The Discboard app links to `https://byteshire.com/discboard-privacy` and `https://byteshire.com/discboard-terms` from its paywall, and both appear in the App Store listing. Those paths must keep resolving. They are pinned with `permalink:` in the two legal pages' front matter. GitHub Pages serves the trailing-slash form (`/discboard-privacy/`) and 301-redirects the bare form (`/discboard-privacy`), which browsers and in-app web views follow transparently. Do not rename or remove these pages without updating the app's hardcoded links.
+## The URLs are load-bearing — do not break them
 
-This site is the canonical published home for the legal copy. It originated from `Discboard/docs/PRIVACY.md` and `Discboard/docs/TERMS.md`; once this site is live, those files plus `Discboard/scripts/render_legal.py` and `Discboard/docs/discboard-*.html` can be retired.
+Every app's privacy and terms pages are linked from its App Store listing, and the subscription apps link to theirs from in-app paywalls. The campaign short links are in live posts and bios. The Discboard app downloads board files from `/discboards/<slug>/` and, for version 1.3.1, from `/b/<slug>/`. `.well-known/apple-app-site-association` powers Discboard's Universal Links.
 
-## Configuration
+`tests/url-contract.txt` lists every one of these paths. `npm run build` ends with `tests/check-url-contract.sh`, which fails the build — and so the deploy — if any is missing. Add a path to the contract whenever something outside the site starts depending on it.
 
-`_config.yml` holds Discboard's App Store id (`discboard_app_id`) and its App Analytics provider token (`discboard_campaign_pt`). Every store link on the site is built from those two values plus a campaign token, so App Store Connect → Analytics → Acquisition → Campaigns can attribute installs to the link that produced them. The landing page's download button carries `ct=byteshire-web`.
+GitHub Pages serves the trailing-slash form (`/discboard-privacy/`) and 301-redirects the bare form (`/discboard-privacy`), which browsers and in-app web views follow transparently.
+
+## Files Discboard's publish script writes
+
+Discboard's `scripts/publish_board.py` writes promo boards into this repo at `discboards/<slug>/` and `b/<slug>/`, in Jekyll's front-matter format, and checks that `.well-known/` sits at the repo root. Those folders stay where the script expects them: `src/content.config.ts` reads their `index.html` front matter, and `src/integrations/passthrough.mjs` copies everything else in them — the board files, wallpapers, and the `b/` symlinks, dereferenced — into the built site byte for byte.
 
 ## Campaign short links
 
-`discboard/<channel>.md` pages use the `redirect` layout and supply only a `campaign:` token; the layout assembles the full `apps.apple.com` URL and forwards immediately. They exist because a short-form video caption cannot be tapped, so the link has to be short enough to say out loud and type — `byteshire.com/discboard/youtube` — and because a redirect can be re-pointed later without editing a post that is already live.
+An app's `shortLinks` map channels to campaign tokens. Each becomes `/<app>/<channel>/`, a page that forwards to the App Store with the app's provider token and that campaign token, so App Store Connect → Analytics → Acquisition → Campaigns can attribute installs to the link that produced them. `src/lib/appstore.ts` builds every store link. The Discboard landing page's download button carries `ct=byteshire-web`, and promo boards carry `ct=promo-<slug>`.
+
+They exist because a short-form video caption cannot be tapped, so the link has to be short enough to say out loud and type — `byteshire.com/discboard/youtube` — and because a redirect can be re-pointed later without editing a post that is already live.
 
 Token convention: TikTok and Instagram only ever get a bio link, so their tokens are evergreen (`bio-tiktok`, `bio-instagram`). YouTube, Bluesky and Reddit links go in individual posts, so their tokens name the release they were posted for (`1.3-carplay-youtube`); bump them when the next release's posts go out. A campaign row only appears in App Store Connect once five distinct Apple Accounts have installed through it.
 
 ## Local preview
 
+Requires Node 22.23.4 or later (`brew install node`).
+
 ```sh
-bundle install
-bundle exec jekyll serve
+npm install
+npm run dev        # live-reloading dev server at http://localhost:4321
+npm run build      # type check, build to dist/, check the URL contract
+npm run preview    # serve dist/
 ```
 
-Then open http://localhost:4000. Requires a Homebrew Ruby plus Bundler — the macOS system Ruby is too old. For small edits you can also skip local preview and let GitHub Pages build on push.
+The dev server doesn't serve the passthrough files (board files, wallpapers, the association file); `npm run build` then `npm run preview` does.
 
 ## Deploy
 
-Push to the default branch. GitHub Pages builds and publishes automatically. The custom domain comes from the `CNAME` file.
+Push to `main`. `.github/workflows/deploy.yml` builds the site and publishes it to GitHub Pages. The custom domain comes from the `CNAME` file. The repo's Pages source must be set to **GitHub Actions**.

@@ -1,0 +1,29 @@
+---
+// A page that forwards the browser somewhere else. GitHub Pages has no
+// server-side redirects, so this is a meta refresh plus a script fallback.
+//
+// A meta refresh only moves a browser. Anything that downloads a file directly
+// gets this HTML page with a 200 status, so a file an app fetches must still
+// exist at its old path.
+interface Props {
+  to: string;
+  title: string;
+}
+const { to, title } = Astro.props;
+const target = new URL(to, Astro.site).toString();
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href={target}>
+  <meta http-equiv="refresh" content={`0; url=${target}`}>
+  <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+</head>
+<body>
+  <p>Taking you to <a href={target}>{title}</a>…</p>
+</body>
+</html>

@@ -1,0 +1,41 @@
+# Every path byteshire.com serves that something outside the site depends on.
+# The Astro build must produce each one; tests/check-url-contract.sh fails the
+# build if any is missing. Format: <path> <kind>
+#   page      an HTML page served at this path (trailing slash form)
+#   redirect  an HTML page that forwards elsewhere
+#   file      a file served byte-for-byte at this exact path
+#
+# Why they matter: the legal pages are linked from App Store listings and the
+# apps' paywalls; the campaign short links are in live social posts and bios;
+# the board file and wallpaper are downloaded by the Discboard app; the
+# association file powers Discboard's Universal Links for /b/* and /share.
+
+/ page
+/discboard/ page
+/discboard-privacy/ page
+/discboard-terms/ page
+/cirth-privacy/ page
+/cirth-terms/ page
+/este-privacy/ page
+/este-terms/ page
+/flindex-privacy/ page
+/flindex-terms/ page
+/irina-privacy/ page
+/luxfidelium-privacy/ page
+/luxfidelium-terms/ page
+/taxihorns-privacy/ page
+/taxihorns-terms/ page
+
+/discboard/tiktok/ redirect
+/discboard/instagram/ redirect
+/discboard/youtube/ redirect
+/discboard/bluesky/ redirect
+/discboard/reddit/ redirect
+/b/american-classical/ redirect
+/b/american-classical/board.discboardboard file
+
+/discboards/american-classical/ page
+/discboards/american-classical/board.discboardboard file
+/discboards/american-classical/wallpaper.jpg file
+/.well-known/apple-app-site-association file
+/CNAME file

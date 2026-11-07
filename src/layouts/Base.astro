@@ -1,0 +1,64 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  // Extra head tags: a Smart App Banner, an og:image.
+  smartAppBanner?: { appId: string; argument?: string };
+  ogImage?: string;
+}
+
+const SITE_TITLE = "Byteshire";
+const SITE_DESCRIPTION = "Byteshire LLC makes Discboard — an album-listening app for iPhone, iPad, and Mac.";
+
+const { title, description = SITE_DESCRIPTION, smartAppBanner, ogImage } = Astro.props;
+const isHome = Astro.url.pathname === "/";
+const fullTitle = title && !isHome ? `${title} · ${SITE_TITLE}` : SITE_TITLE;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const year = new Date().getFullYear();
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{fullTitle}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonical}>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={title ?? SITE_TITLE}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonical}>
+  {smartAppBanner && (
+    <meta name="apple-itunes-app" content={`app-id=${smartAppBanner.appId}${smartAppBanner.argument ? `, app-argument=${smartAppBanner.argument}` : ""}`}>
+  )}
+  {ogImage && <meta property="og:image" content={ogImage}>}
+  <link rel="sitemap" href="/sitemap-index.xml">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">Byteshire</a>
+      <nav class="site-nav">
+        <a href="/discboard/">Discboard</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <slot />
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-links">
+        <a href="/discboard/">Discboard</a>
+        <a href="/discboard-privacy/">Privacy</a>
+        <a href="/discboard-terms/">Terms</a>
+        <a href="mailto:info@byteshire.com">Contact</a>
+      </nav>
+      <p class="copyright">© {year} Byteshire LLC</p>
+    </div>
+  </footer>
+</body>
+</html>

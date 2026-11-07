@@ -1,0 +1,27 @@
+/* Byteshire's brand tokens: the one place colors, type and sizes are defined.
+   Tailwind's @theme turns each one into a CSS variable on :root, and into a
+   utility class (bg-surface, text-muted, rounded-card…) for new components. */
+@theme {
+  --color-bg: #ffffff;
+  --color-surface: #f5f5f7;
+  --color-text: #1a1a1a;
+  --color-muted: #6a6a6e;
+  --color-accent: #0a66c2;
+  --color-border: #e3e3e6;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  --container-content: 760px;
+  --radius-card: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0d0d0f;
+    --color-surface: #1a1a1d;
+    --color-text: #f2f2f5;
+    --color-muted: #9a9aa0;
+    --color-accent: #5aa9ff;
+    --color-border: #2a2a2e;
+  }
+}

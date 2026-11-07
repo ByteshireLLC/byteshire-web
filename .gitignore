@@ -1,7 +1,4 @@
-_site/
-.jekyll-cache/
-.jekyll-metadata
-Gemfile.lock
-vendor/
-.bundle/
 .DS_Store
+node_modules/
+dist/
+.astro/

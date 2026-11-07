@@ -1,0 +1,22 @@
+---
+// Campaign short links: /<app>/<channel>/ forwards to the App Store with that
+// channel's campaign token. They exist because a short-form video caption
+// can't be tapped, so the link has to be short enough to say out loud and type,
+// and because a redirect can be re-pointed later without editing a live post.
+import { getCollection } from "astro:content";
+import Redirect from "../../layouts/Redirect.astro";
+import { appStoreURL } from "../../lib/appstore";
+
+export async function getStaticPaths() {
+  const apps = await getCollection("apps");
+  return apps.flatMap((app) =>
+    Object.entries(app.data.shortLinks).map(([channel, campaign]) => ({
+      params: { app: app.id, channel },
+      props: { to: appStoreURL(app, campaign), title: `${app.data.name} on the App Store` },
+    })),
+  );
+}
+
+const { to, title } = Astro.props;
+---
+<Redirect to={to} title={title} />
