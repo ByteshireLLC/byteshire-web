@@ -47,6 +47,14 @@ A showstopper is something that blocks a principle above with no reasonable work
 
 The site stays on GitHub Pages, built by a GitHub Action on each push, with the existing `CNAME`. That keeps the account and DNS as they are. The trade-off is that campaign short links forward with an instant meta-refresh page, not a true permanent redirect. Moving to Cloudflare Pages later would fix that with only a DNS change, so the build config stays free of anything GitHub-specific.
 
+### An app's own domain is a signpost to its page here
+
+When Byteshire owns a domain named for an app, that domain sends visitors to the app's landing page on byteshire.com and never becomes a second copy of the site. Today these are `luxfidelium.com` and `luxfidelium.app` for `/luxfidelium/`, and `discboard.app` for `/discboard/`. One site keeps one set of pages, one set of URLs for App Store Connect and one place to update. The app's domain is still something short to say aloud or print, and every path on it lands on the landing page, so a guessed or old link never dead-ends.
+
+Each domain must work over HTTPS. Browsers try HTTPS first, and `.app` domains only work over HTTPS. Hover, where the domains are registered, can forward only plain HTTP, so its forwarding is not used. Instead each domain has a tiny repo of its own in ByteshireLLC, named for the domain, as in `luxfidelium-app`. GitHub Pages serves it with a free certificate, and an `index.html` and `404.html` forward to the landing page. GitHub Pages allows one custom domain per repo, which is why there's one repo per domain rather than one for all of them. The repos must stay public, because the free plan only serves Pages from public repos. Moving to Cloudflare would turn these into true permanent redirects managed in one place, at the cost of moving the domains' DNS off Hover.
+
+When adding a domain, push its repo first, then point the DNS at GitHub, then turn on Pages right away. GitHub requests the certificate only when it sees the DNS already in place, and a domain added the other way round can sit without one until it is removed and re-added. Keep the gap between the DNS change and turning on Pages short: until Pages claims the domain, another GitHub account could claim it.
+
 ## Load-bearing URLs
 
 The privacy and terms pages for every app, at `/<app>-privacy/` and `/<app>-terms/`, and the campaign short links under `/discboard/<channel>/` must keep resolving through any rebuild. The README explains why. Any migration lists every live URL first and fails its build if one goes missing.
