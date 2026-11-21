@@ -1,4 +1,5 @@
 ---
+import { getImage } from "astro:assets";
 import { getCollection, type CollectionEntry } from "astro:content";
 import "../styles/global.css";
 
@@ -44,6 +45,12 @@ const fontFace = brand?.font?.file
   ? `@font-face { font-family: "${brand.font.family}"; src: url("/fonts/${app!.id}/${brand.font.file}") format("truetype"); font-weight: 300 700; font-display: swap; }`
   : undefined;
 const appPath = app ? `/${app.id}/` : undefined;
+// An app's pages carry its icon in the browser tab and on the Home Screen, from the
+// icon scripts/import-app.py brings in, so the tab shows the app's current brand.
+const appIcons = import.meta.glob<{ default: ImageMetadata }>("../assets/apps/*/icon.jpg", { eager: true });
+const iconSource = app ? appIcons[`../assets/apps/${app.id}/icon.jpg`]?.default : undefined;
+const favicon = iconSource ? await getImage({ src: iconSource, width: 64, format: "png" }) : undefined;
+const touchIcon = iconSource ? await getImage({ src: iconSource, width: 180, format: "png" }) : undefined;
 // Studio pages list every app that has a page of its own, as the home page does.
 const appsWithLandingPages = app ? [] : (await getCollection("apps")).filter((entry) => entry.data.landingPage);
 ---
@@ -64,6 +71,8 @@ const appsWithLandingPages = app ? [] : (await getCollection("apps")).filter((en
   )}
   {ogImage && <meta property="og:image" content={ogImage}>}
   {brand && <meta name="theme-color" content={brand.backgroundTop}>}
+  {favicon && <link rel="icon" type="image/png" sizes="64x64" href={favicon.src}>}
+  {touchIcon && <link rel="apple-touch-icon" href={touchIcon.src}>}
   {fontFace && <style is:inline set:html={fontFace}></style>}
   <link rel="sitemap" href="/sitemap-index.xml">
   <slot name="head" />

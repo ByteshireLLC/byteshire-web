@@ -5,7 +5,7 @@
     "assets": "Discboard-assets",
     "appStoreId": "6768056000",
     "icon": "Brand/Discboard-avatar-1024.png",
-    "ogImage": "Brand/Discboard-creative-header-2.0.png",
+    "ogImage": "Brand/Discboard-creative-header.png",
     "font": {
       "family": "Fredoka",
       "file": "AppStore/templates/fonts/Fredoka-Variable.ttf",
