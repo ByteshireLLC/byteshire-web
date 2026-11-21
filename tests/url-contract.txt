@@ -25,6 +25,7 @@
 /cirth-terms/ page
 /este-privacy/ page
 /este-terms/ page
+/gravitas-privacy/ page
 /flindex-privacy/ page
 /flindex-terms/ page
 /irina-privacy/ page
