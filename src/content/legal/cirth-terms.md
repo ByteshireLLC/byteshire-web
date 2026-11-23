@@ -4,7 +4,7 @@ kind: terms
 title: Cirth Terms of Use
 description: The terms that govern your use of the Cirth app.
 effective: 2026-07-28
-updated: 2026-07-28
+updated: 2026-11-22
 ---
 
 These Terms of Use govern your use of the Cirth app, made by Byteshire LLC ("we," "us"). By downloading or using Cirth, you agree to these terms.
@@ -18,6 +18,17 @@ Cirth is licensed, not sold, to you for use only under these terms and under App
 Cirth edits the files you open with it. You are responsible for those files and for having the rights to use them. Your documents stay where they already live, and your edits are written back to the original file in place, as described in our [Privacy Policy](https://byteshire.com/cirth-privacy/).
 
 Cirth does not store, back up, or take ownership of your documents. Deleting the app removes its preferences, never your files.
+
+## Cirth Unlock
+
+Cirth is free to download, and its editor is complete without paying: you can open, read and edit every document. **Cirth Unlock** is an optional one-time in-app purchase.
+
+- **What it adds:** the Reading and Sepia themes, PDF and EPUB export, Read Aloud, syncing your reading place across your devices through iCloud, and the `cirth` command-line tool on the Mac.
+- **Price:** $9.99 (US), once. It is not a subscription and never renews. Prices vary by region; the exact price, currency and any taxes are shown in the app before you confirm.
+- **Payment** is handled by Apple and charged to your Apple Account when you confirm the purchase.
+- **One purchase covers iPhone, iPad and Mac** signed in to the same Apple Account, and Family Sharing is on, so members of your family group can use it too.
+- **Restore Purchases,** in Settings and on the unlock screen, brings it back on a new device or after reinstalling.
+- **Refunds** are handled by Apple under its own policies, at reportaproblem.apple.com.
 
 ## Acceptable use
 
